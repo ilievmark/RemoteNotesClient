@@ -1,22 +1,22 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/Users/user/Projects/Labs/RemoteNotesLabs/RemoteNotes/RemoteNotes/RemoteNotes.csproj",
-    "projectName": "RemoteNotes",
-    "projectPath": "/Users/user/Projects/Labs/RemoteNotesLabs/RemoteNotes/RemoteNotes/RemoteNotes.csproj",
-    "outputPath": "/Users/user/Projects/Labs/RemoteNotesLabs/RemoteNotes/RemoteNotes/obj/",
+    "projectUniqueName": "/Users/user/Projects/Labs/RemoteNotesLabs/RemoteNotes/UI/RemoteNotes.UI.Control/RemoteNotes.UI.Control.csproj",
+    "projectName": "RemoteNotes.UI.Control",
+    "projectPath": "/Users/user/Projects/Labs/RemoteNotesLabs/RemoteNotes/UI/RemoteNotes.UI.Control/RemoteNotes.UI.Control.csproj",
+    "outputPath": "/Users/user/Projects/Labs/RemoteNotesLabs/RemoteNotes/UI/RemoteNotes.UI.Control/obj/",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
     ],
     "originalTargetFrameworks": [
-      "netstandard2.0"
+      "netstandard2.1"
     ],
     "sources": {
       "https://api.nuget.org/v3/index.json": {}
     },
     "frameworks": {
-      "netstandard2.0": {
+      "netstandard2.1": {
         "projectReferences": {}
       }
     },
@@ -27,17 +27,11 @@
     }
   },
   "frameworks": {
-    "netstandard2.0": {
+    "netstandard2.1": {
       "dependencies": {
-        "NETStandard.Library": {
-          "suppressParent": "All",
-          "target": "Package",
-          "version": "[2.0.3, )",
-          "autoReferenced": true
-        },
         "Xamarin.Forms": {
           "target": "Package",
-          "version": "[3.3.0.967583, )"
+          "version": "[4.4.0.991640, )"
         }
       },
       "imports": [
@@ -50,6 +44,11 @@
       ],
       "assetTargetFallback": true,
       "warn": true,
+      "frameworkReferences": {
+        "NETStandard.Library": {
+          "privateAssets": "all"
+        }
+      },
       "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.301/RuntimeIdentifierGraph.json"
     }
   }

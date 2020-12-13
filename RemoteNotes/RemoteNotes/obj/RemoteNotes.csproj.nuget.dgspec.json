@@ -1,0 +1,68 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/user/Projects/Labs/RemoteNotesLabs/RemoteNotes/RemoteNotes/RemoteNotes.csproj": {}
+  },
+  "projects": {
+    "/Users/user/Projects/Labs/RemoteNotesLabs/RemoteNotes/RemoteNotes/RemoteNotes.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/user/Projects/Labs/RemoteNotesLabs/RemoteNotes/RemoteNotes/RemoteNotes.csproj",
+        "projectName": "RemoteNotes",
+        "projectPath": "/Users/user/Projects/Labs/RemoteNotesLabs/RemoteNotes/RemoteNotes/RemoteNotes.csproj",
+        "packagesPath": "/Users/user/.nuget/packages/",
+        "outputPath": "/Users/user/Projects/Labs/RemoteNotesLabs/RemoteNotes/RemoteNotes/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/user/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "Xamarin.Forms": {
+              "target": "Package",
+              "version": "[3.3.0.967583, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

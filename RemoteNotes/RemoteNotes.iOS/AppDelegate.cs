@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
+﻿using Foundation;
+using RemoteNotes.UI.Shell;
 using UIKit;
 
 namespace RemoteNotes.iOS

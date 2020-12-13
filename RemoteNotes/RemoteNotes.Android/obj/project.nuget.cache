@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "I6zM3Bbl771qak3H/1nyG7ZKda+6foz6oz6wWMKpOCzA+9zTlJqGJXFDJnq66yCHjw8GDNhAdeTrArY1uS6dag==",
+  "success": true,
+  "projectFilePath": "/Users/user/Projects/Labs/RemoteNotesLabs/RemoteNotes/RemoteNotes.Android/RemoteNotes.Android.csproj",
+  "expectedPackageFiles": [
+    "/Users/user/.nuget/packages/xamarin.android.support.animated.vector.drawable/23.4.0.1/xamarin.android.support.animated.vector.drawable.23.4.0.1.nupkg.sha512",
+    "/Users/user/.nuget/packages/xamarin.android.support.design/23.4.0.1/xamarin.android.support.design.23.4.0.1.nupkg.sha512",
+    "/Users/user/.nuget/packages/xamarin.android.support.v4/23.4.0.1/xamarin.android.support.v4.23.4.0.1.nupkg.sha512",
+    "/Users/user/.nuget/packages/xamarin.android.support.v7.appcompat/23.4.0.1/xamarin.android.support.v7.appcompat.23.4.0.1.nupkg.sha512",
+    "/Users/user/.nuget/packages/xamarin.android.support.v7.cardview/23.4.0.1/xamarin.android.support.v7.cardview.23.4.0.1.nupkg.sha512",
+    "/Users/user/.nuget/packages/xamarin.android.support.v7.mediarouter/23.4.0.1/xamarin.android.support.v7.mediarouter.23.4.0.1.nupkg.sha512",
+    "/Users/user/.nuget/packages/xamarin.android.support.v7.recyclerview/23.4.0.1/xamarin.android.support.v7.recyclerview.23.4.0.1.nupkg.sha512",
+    "/Users/user/.nuget/packages/xamarin.android.support.vector.drawable/23.4.0.1/xamarin.android.support.vector.drawable.23.4.0.1.nupkg.sha512",
+    "/Users/user/.nuget/packages/xamarin.forms/3.3.0.967583/xamarin.forms.3.3.0.967583.nupkg.sha512"
+  ],
+  "logs": []
+}

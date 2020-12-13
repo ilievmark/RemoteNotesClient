@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "43RSSaG32brKC7Kcwqu0XPcKYBssX65dJuUSKxLrfEUwnlzQh3KzqbvSz/2R6Ff0xAGrgpAE6U7idJhs3606SQ==",
+  "success": true,
+  "projectFilePath": "/Users/user/Projects/Labs/RemoteNotesLabs/RemoteNotes/RemoteNotes.iOS/RemoteNotes.iOS.csproj",
+  "expectedPackageFiles": [
+    "/Users/user/.nuget/packages/xamarin.forms/3.3.0.967583/xamarin.forms.3.3.0.967583.nupkg.sha512"
+  ],
+  "logs": []
+}

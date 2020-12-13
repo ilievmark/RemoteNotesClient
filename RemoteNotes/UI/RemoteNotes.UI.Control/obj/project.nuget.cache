@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "CyHIsx9qSJ59eSseC8kR60dxQAIM9W8D03599T9ITo50kOH5OGul3g5PQpAgiIy9UWClyYwMKV4JFCvLTabn9A==",
+  "success": true,
+  "projectFilePath": "/Users/user/Projects/Labs/RemoteNotesLabs/RemoteNotes/UI/RemoteNotes.UI.Control/RemoteNotes.UI.Control.csproj",
+  "expectedPackageFiles": [
+    "/Users/user/.nuget/packages/xamarin.forms/4.4.0.991640/xamarin.forms.4.4.0.991640.nupkg.sha512"
+  ],
+  "logs": []
+}
