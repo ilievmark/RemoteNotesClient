@@ -109,9 +109,9 @@
         <PackageReference Include="Xamarin.Forms" Version="3.3.0.967583" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\RemoteNotes\RemoteNotes.csproj">
-            <Project>{0E151F0F-21FF-497B-8FD3-444EDA59D213}</Project>
-            <Name>RemoteNotes</Name>
+        <ProjectReference Include="..\..\UI\RemoteNotes.UI.Shell\RemoteNotes.UI.Shell.csproj">
+          <Project>{948d2b0b-a43e-4156-acdd-577d8303336f}</Project>
+          <Name>RemoteNotes.UI.Shell</Name>
         </ProjectReference>
         <ProjectReference Include="..\UI\RemoteNotes.UI.Shell\RemoteNotes.UI.Shell.csproj">
           <Project>{948d2b0b-a43e-4156-acdd-577d8303336f}</Project>
