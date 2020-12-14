@@ -1,4 +1,5 @@
-using RemoteNotes.UI.ViewModel;
+using RemoteNotes.UI.ViewModel.Abstract;
+using RemoteNotes.UI.ViewModel.Service;
 
 namespace RemoteNotes.UI.Shell.Navigation
 {

@@ -1,4 +1,6 @@
-namespace RemoteNotes.UI.ViewModel
+using RemoteNotes.UI.ViewModel.Abstract;
+
+namespace RemoteNotes.UI.ViewModel.Service
 {
     public interface IViewModelProvider
     {
