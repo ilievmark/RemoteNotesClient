@@ -10,7 +10,6 @@ namespace RemoteNotes.UI.Shell.Module
         {
             builder.RegisterModule<NavigationModule>();
 
-            builder.RegisterType<ViewModelProvider>().As<IViewModelProvider>();
             builder.RegisterType<NavigationController>().As<INavigationController>();
         }
     }

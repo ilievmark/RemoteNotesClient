@@ -1,9 +1,10 @@
+using System;
 using System.Threading.Tasks;
 
 namespace RemoteNotes.UI.ViewModel.Abstract 
 {
-    public abstract class BaseViewModel : BindableBase, IInitialize
+    public abstract class BaseViewModel : BindableBase
     {
-        public virtual Task InitializeAsync() => Task.CompletedTask;
+        protected Action CreateCommandHandler(Action handler) => () => handler();
     }
 }
