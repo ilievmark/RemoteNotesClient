@@ -17,7 +17,8 @@ namespace RemoteNotes.UI.Shell.Module
             builder.RegisterType<LoginPage>().Named<ContentPage>(PageKeys.Login);
             builder.RegisterType<LoginPageViewModel>();
             
-            
+            builder.RegisterType<DashboardPage>().Named<ContentPage>(PageKeys.Dashboard);
+            builder.RegisterType<DashboardPageViewModel>();
         }
     }
 }
