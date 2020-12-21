@@ -1,5 +1,4 @@
 using RemoteNotes.UI.ViewModel.Abstract;
-using RemoteNotes.UI.ViewModel.Service;
 using Xamarin.Forms;
 
 namespace RemoteNotes.UI.Control
@@ -7,9 +6,9 @@ namespace RemoteNotes.UI.Control
     public class BasePage<TViewModel> : ContentPage
         where TViewModel : BaseViewModel
     {
-        public BasePage(IViewModelProvider vmProvider)
+        public BasePage(TViewModel viewModel)
         {
-            BindingContext = vmProvider.GetViewModel<TViewModel>();
+            BindingContext = viewModel;
         }
     }
 }

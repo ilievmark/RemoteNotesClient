@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using RemoteNotes.UI.Shell.Module;
 using RemoteNotes.UI.Shell.Navigation;
 using RemoteNotes.UI.ViewModel;
@@ -9,12 +10,8 @@ namespace RemoteNotes.UI.Shell
 {
     public partial class App
     {
-        private static IContainer Container;
-
-        internal static T Resolve<T>() => Container.Resolve<T>();
+        private IContainer Container;
         
-        internal static T Resolve<T>(string key) => Container.ResolveNamed<T>(key);
-            
         public App()
         {
             InitializeComponent();
@@ -40,6 +37,7 @@ namespace RemoteNotes.UI.Shell
             var builder = new ContainerBuilder();
             builder.RegisterModule<MainModule>();
             builder.Register(c => new NavigationProvider(() => MainPage.Navigation));
+            builder.Register(c => new PageLocator(new Lazy<IContainer>(() => Container)));
             Container = builder.Build();
         }
 

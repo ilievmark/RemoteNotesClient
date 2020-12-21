@@ -1,6 +1,4 @@
 using Autofac;
-using RemoteNotes.UI.Shell.Navigation;
-using RemoteNotes.UI.ViewModel.Service;
 
 namespace RemoteNotes.UI.Shell.Module
 {
@@ -9,9 +7,8 @@ namespace RemoteNotes.UI.Shell.Module
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<NavigationModule>();
-
-            builder.RegisterType<ViewModelProvider>().As<IViewModelProvider>();
-            builder.RegisterType<NavigationController>().As<INavigationController>();
+            builder.RegisterModule<ServiceModule>();
+            builder.RegisterModule<RulesModule>();
         }
     }
 }
