@@ -14,10 +14,12 @@ namespace RemoteNotes.Service.Client.Stub.Hub
         
         public Task<AuthResult> LoginAsync(AuthModel authModel)
         {
-            if (authModel.Login != "Silvester_222")
+            if (authModel.Login != StubConstants.Login)
                 return Task.FromResult(new AuthResult(false));
-            if (authModel.Password != "Password_222")
+            
+            if (authModel.Password != StubConstants.Password)
                 return Task.FromResult(new AuthResult(false));
+            
             return Task.FromResult(new AuthResult(true));
         }
     }

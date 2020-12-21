@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using RemoteNotes.UI.ViewModel.Abstract;
 using RemoteNotes.UI.ViewModel.Service;
@@ -22,17 +23,26 @@ namespace RemoteNotes.UI.Shell.Navigation
 
         public async Task NavigateToAsync(string pageKey)
         {
-            var page = _pageLocator.ResolveNamedPage(pageKey);
-            await InitializeViewModelAsync(page);
+            var page = await ResolvePageAsync(pageKey);
             await Navigation.PushAsync(page);
         }
 
-        public Task NavigateBackAsync()
+        public async Task NavigateToRootWith(string pageKey)
         {
-            throw new System.NotImplementedException();
+            var page = await ResolvePageAsync(pageKey);
+            var firstPage = Navigation.NavigationStack.First();
+            Navigation.InsertPageBefore(page, firstPage);
+            await Navigation.PopToRootAsync();
         }
 
         #region helpers
+
+        private async Task<Page> ResolvePageAsync(string pageKey)
+        {
+            var page = _pageLocator.ResolveNamedPage(pageKey);
+            await InitializeViewModelAsync(page);
+            return page;
+        }
         
         private Task InitializeViewModelAsync(Page page)
         {

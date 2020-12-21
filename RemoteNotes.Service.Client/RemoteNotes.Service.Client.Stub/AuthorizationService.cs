@@ -11,17 +11,23 @@ namespace RemoteNotes.Service.Client.Stub
     {
         private readonly IHubConnection _authHubConnection;
         private readonly IAuthorizationHub _authorizationHub;
+        private readonly IAuthorizationUpdater _authorizationUpdater;
+        
         private bool _authorizedState;
 
         public AuthorizationService(
             IHubConnection authHubConnection,
-            IAuthorizationHub authorizationHub)
+            IAuthorizationHub authorizationHub,
+            IAuthorizationUpdater authorizationUpdater)
         {
             _authHubConnection = authHubConnection;
             _authorizationHub = authorizationHub;
+            _authorizationUpdater = authorizationUpdater;
         }
-        
-        public Task<AuthResult> LoginAsync(AuthModel authModel)
+
+        public bool IsAuthorized { get; }
+
+        public async Task<AuthResult> LoginAsync(AuthModel authModel)
         {
             if (_authorizedState)
                 throw new InvalidOperationException("Already authorized");
@@ -29,17 +35,13 @@ namespace RemoteNotes.Service.Client.Stub
             if (authModel == null)
                 throw new ArgumentNullException(nameof(authModel));
             
-            if (string.IsNullOrEmpty(authModel.Login))
-                throw new InvalidDataException("Login is invalid");
-            
-            if (string.IsNullOrEmpty(authModel.Password))
-                throw new InvalidDataException("Password is invalid");
-
             if (!_authHubConnection.IsConnected)
                 _authHubConnection.ConnectAsync();
 
-            _authorizedState = true;
-            return _authorizationHub.LoginAsync(authModel);
+            var authResult = await _authorizationHub.LoginAsync(authModel);
+            _authorizedState = authResult.Success;
+            _authorizationUpdater.SetData(authResult);
+            return authResult;
         }
 
         public Task LogoutAsync()
@@ -47,6 +49,7 @@ namespace RemoteNotes.Service.Client.Stub
             if (!_authorizedState)
                 throw new InvalidOperationException("Must be authorized first");
 
+            _authorizationUpdater.SetData(null);
             _authorizedState = false;
             return Task.CompletedTask;
         }

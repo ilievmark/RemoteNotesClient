@@ -5,12 +5,13 @@
                   xmlns:vm="clr-namespace:RemoteNotes.UI.ViewModel;assembly=RemoteNotes.UI.ViewModel"
                   x:Class="RemoteNotes.UI.Control.LoginPage"
                   x:TypeArguments="vm:LoginPageViewModel"
-                  x:DataType="vm:LoginPageViewModel">
+                  x:DataType="vm:LoginPageViewModel"
+                  Title="{Binding Title}">
     
     <Grid Padding="20"
           VerticalOptions="Center"
           ColumnDefinitions=".5*, .5*"
-          RowDefinitions=".3*, .3*, .3*">
+          RowDefinitions=".3*, .3*, .3*, 40">
         
         <Entry Grid.Row="0" Grid.ColumnSpan="2"
                Text="{Binding Login}"
@@ -23,6 +24,13 @@
         <Button Grid.Row="2" Grid.Column="0"
                 Command="{Binding LoginCommand}"
                 Text="Enter"/>
+        
+        <Label Grid.Row="3"
+               Grid.ColumnSpan="2"
+               TextColor="Red"
+               MaxLines="3"
+               HorizontalTextAlignment="Center"
+               Text="{Binding ErrorMessage}"/>
         
     </Grid>
     
