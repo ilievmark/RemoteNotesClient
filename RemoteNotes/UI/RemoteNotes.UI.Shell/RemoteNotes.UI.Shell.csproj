@@ -17,6 +17,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\RemoteNotes.Core\RemoteNotes.Rules.Contract\RemoteNotes.Rules.Contract.csproj" />
+      <ProjectReference Include="..\..\..\RemoteNotes.Core\RemoteNotes.Rules\RemoteNotes.Rules.csproj" />
+      <ProjectReference Include="..\..\..\RemoteNotes.Service.Client\RemoteNotes.Service.Client.Stub\RemoteNotes.Service.Client.Stub.csproj" />
+      <ProjectReference Include="..\..\..\RemoteNotes.Service\RemoteNotes.Service.Domain\RemoteNotes.Service.Domain.csproj" />
       <ProjectReference Include="..\RemoteNotes.UI.Control\RemoteNotes.UI.Control.csproj" />
       <ProjectReference Include="..\RemoteNotes.UI.ViewModel\RemoteNotes.UI.ViewModel.csproj" />
     </ItemGroup>

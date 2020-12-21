@@ -10,8 +10,8 @@ namespace RemoteNotes.UI.Shell
 {
     public partial class App
     {
-        private static IContainer Container;
-
+        private IContainer Container;
+        
         public App()
         {
             InitializeComponent();
