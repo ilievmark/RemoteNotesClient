@@ -10,5 +10,21 @@ namespace RemoteNotes.UI.Control
         {
             BindingContext = viewModel;
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            
+            if (BindingContext is IAppearable casted)
+                casted.Appeared();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            
+            if (BindingContext is IDisappearable casted)
+                casted.Disappeared();
+        }
     }
 }
