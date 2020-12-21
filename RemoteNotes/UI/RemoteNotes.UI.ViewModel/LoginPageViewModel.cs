@@ -31,6 +31,13 @@ namespace RemoteNotes.UI.ViewModel
             Title = "Authorization";
         }
         
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set => SetProperty(ref _errorMessage, value);
+        }
+        
         private string _login;
         public string Login
         {
@@ -49,6 +56,8 @@ namespace RemoteNotes.UI.ViewModel
 
         private async Task OnLoginCommand()
         {
+            SetLoginErrorMessage(string.Empty);
+            
             var login = Login;
             var password = Password;
 
@@ -60,17 +69,20 @@ namespace RemoteNotes.UI.ViewModel
             }
             catch (AuthenticationException authenticationException)
             {
-                Debugger.Break();
+                SetLoginErrorMessage("Authorization error." + Environment.NewLine + authenticationException.Message);
             }
             catch (InvalidDataException invalidDataException)
             {
-                Debugger.Break();
+                SetLoginErrorMessage("Input data not matched the rules." + Environment.NewLine + invalidDataException.Message);
             }
             catch (ArgumentNullException argumentNullException)
             {
-                Debugger.Break();
+                SetLoginErrorMessage("Credentials cant be empty.");
             }
         }
+
+        private void SetLoginErrorMessage(string message)
+            => ErrorMessage = message;
 
         private void ValidateLogin(string login)
             => _authorizationDataValidator.ValidateLogin(login);
@@ -96,7 +108,7 @@ namespace RemoteNotes.UI.ViewModel
 
         private async Task LoginNotSuccessAsync(AuthResult result)
         {
-
+            SetLoginErrorMessage("Cant login with given credentials.");
         }
     }
 }

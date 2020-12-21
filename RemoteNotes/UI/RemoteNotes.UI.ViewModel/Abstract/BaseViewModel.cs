@@ -13,6 +13,7 @@ namespace RemoteNotes.UI.ViewModel.Abstract
         }
         
         protected Action CreateCommandHandler(Action handler) => () => handler();
+        
         protected Func<Task> CreateAsyncCommandHandler(Func<Task> handler) => () => handler();
     }
 }
