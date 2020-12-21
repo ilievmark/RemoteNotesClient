@@ -4,13 +4,52 @@
                   x:Class="RemoteNotes.UI.Control.DashboardPage"
                   xmlns:control="clr-namespace:RemoteNotes.UI.Control;assembly=RemoteNotes.UI.Control"
                   xmlns:vm="clr-namespace:RemoteNotes.UI.ViewModel;assembly=RemoteNotes.UI.ViewModel"
+                  xmlns:m="clr-namespace:RemoteNotes.UI.ViewModel.Model;assembly=RemoteNotes.UI.ViewModel"
                   x:TypeArguments="vm:DashboardPageViewModel"
-                  x:DataType="vm:DashboardPageViewModel">
+                  x:DataType="vm:DashboardPageViewModel"
+                  Title="{Binding Title}">
     
-    <StackLayout>
-        <Label Text="Hello, world!"
-               VerticalOptions="CenterAndExpand"
-               HorizontalOptions="CenterAndExpand" />
-    </StackLayout>
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <RefreshView Grid.Row="1"
+                     Margin="15"
+                     IsRefreshing="{Binding IsRefreshing}"
+                     Command="{Binding RefreshCommand}">
+            
+            <CollectionView ItemsSource="{Binding Items}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="m:NoteViewModel">
+                        
+                        <Grid RowDefinitions=".65*, .35*"
+                              Margin="15">
+                            
+                            <Label Grid.Row="0"
+                                   FontSize="20"
+                                   Text="{Binding Title}" />
+                            
+                            <Label Grid.Row="1"
+                                   FontSize="14"
+                                   Text="{Binding Description}" />
+                            
+                            <BoxView Grid.RowSpan="2"
+                                     BackgroundColor="Black"
+                                     HeightRequest="1"
+                                     VerticalOptions="End"
+                                     Margin="20, 0"/>
+                            
+                        </Grid>
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+        </RefreshView>
+        
+    </Grid>
     
 </control:BasePage>
