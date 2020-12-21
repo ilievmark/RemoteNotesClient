@@ -5,7 +5,7 @@ namespace RemoteNotes.UI.ViewModel.Service
     public interface INavigationController
     {
         Task NavigateToAsync(string pageKey);
-        
-        Task NavigateBackAsync();
+
+        Task NavigateToRootWith(string pageKey);
     }
 }

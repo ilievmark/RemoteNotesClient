@@ -27,6 +27,8 @@ namespace RemoteNotes.UI.ViewModel
             _navigationController = navigationController;
             _authorizationService = authorizationService;
             _authorizationDataValidator = authorizationDataValidator;
+
+            Title = "Authorization";
         }
         
         private string _login;
@@ -89,7 +91,7 @@ namespace RemoteNotes.UI.ViewModel
 
         private Task LoginSuccessAsync(AuthResult result)
         {
-            return _navigationController.NavigateToAsync(PageKeys.Dashboard);
+            return _navigationController.NavigateToRootWith(PageKeys.Dashboard);
         }
 
         private async Task LoginNotSuccessAsync(AuthResult result)

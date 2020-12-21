@@ -6,6 +6,7 @@ namespace RemoteNotes.UI.Control
     {
         public DashboardPage(DashboardPageViewModel viewModel) : base(viewModel)
         {
+            InitializeComponent();
         }
     }
 }

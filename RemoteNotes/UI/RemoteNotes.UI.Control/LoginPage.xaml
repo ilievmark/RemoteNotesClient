@@ -5,7 +5,8 @@
                   xmlns:vm="clr-namespace:RemoteNotes.UI.ViewModel;assembly=RemoteNotes.UI.ViewModel"
                   x:Class="RemoteNotes.UI.Control.LoginPage"
                   x:TypeArguments="vm:LoginPageViewModel"
-                  x:DataType="vm:LoginPageViewModel">
+                  x:DataType="vm:LoginPageViewModel"
+                  Title="{Binding Title}">
     
     <Grid Padding="20"
           VerticalOptions="Center"
