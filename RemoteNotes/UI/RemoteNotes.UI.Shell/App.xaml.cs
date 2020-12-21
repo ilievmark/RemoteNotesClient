@@ -1,5 +1,6 @@
 ﻿using System;
 using Autofac;
+using RemoteNotes.Service.Client.Contract;
 using RemoteNotes.UI.Shell.Module;
 using RemoteNotes.UI.Shell.Navigation;
 using RemoteNotes.UI.ViewModel;
@@ -43,8 +44,13 @@ namespace RemoteNotes.UI.Shell
 
         private async void SetupNavigation()
         {
+            var authHolder = Container.Resolve<IAuthorizationHolder>();
             var navController = Container.Resolve<INavigationController>();
-            await navController.NavigateToAsync(PageKeys.Login);
+            
+            if (authHolder.IsAuthorized)
+                await navController.NavigateToAsync(PageKeys.Dashboard);
+            else
+                await navController.NavigateToAsync(PageKeys.Login);
         }
     }
 }
