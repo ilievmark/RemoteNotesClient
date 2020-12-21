@@ -9,6 +9,7 @@ namespace RemoteNotes.UI.Shell.Module
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<NavigationModule>();
+            builder.RegisterModule<RulesModule>();
 
             builder.RegisterType<NavigationController>().As<INavigationController>();
         }
