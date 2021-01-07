@@ -9,7 +9,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\RemoteNotes.Core\RemoteNotes.Rules.Contract\RemoteNotes.Rules.Contract.csproj" />
       <ProjectReference Include="..\..\..\RemoteNotes.Service.Client\RemoteNotes.Service.Client.Contract\RemoteNotes.Service.Client.Contract.csproj" />
+      <ProjectReference Include="..\..\..\..\RemoteNotes.Core\RemoteNotes.Rules.Contract\RemoteNotes.Rules.Contract.csproj" />
     </ItemGroup>
 </Project>

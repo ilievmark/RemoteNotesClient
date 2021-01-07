@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteNotesServer", "RemoteNotesServer\RemoteNotesServer.csproj", "{CA29CEE1-B335-4CCA-9705-6BF2F1F5FA8C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rules", "Rules", "{3D713270-49CD-4B27-B070-14E63A332688}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteNotes.Rules", "..\RemoteNotes.Core\RemoteNotes.Rules\RemoteNotes.Rules.csproj", "{4C153B0F-59CE-4E1B-B050-38DCA9855062}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteNotes.Rules.Contract", "..\RemoteNotes.Core\RemoteNotes.Rules.Contract\RemoteNotes.Rules.Contract.csproj", "{44F82D41-9EFF-4D2A-BC13-5B161D8F50B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA29CEE1-B335-4CCA-9705-6BF2F1F5FA8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA29CEE1-B335-4CCA-9705-6BF2F1F5FA8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA29CEE1-B335-4CCA-9705-6BF2F1F5FA8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA29CEE1-B335-4CCA-9705-6BF2F1F5FA8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C153B0F-59CE-4E1B-B050-38DCA9855062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C153B0F-59CE-4E1B-B050-38DCA9855062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C153B0F-59CE-4E1B-B050-38DCA9855062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C153B0F-59CE-4E1B-B050-38DCA9855062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44F82D41-9EFF-4D2A-BC13-5B161D8F50B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44F82D41-9EFF-4D2A-BC13-5B161D8F50B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44F82D41-9EFF-4D2A-BC13-5B161D8F50B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44F82D41-9EFF-4D2A-BC13-5B161D8F50B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4C153B0F-59CE-4E1B-B050-38DCA9855062} = {3D713270-49CD-4B27-B070-14E63A332688}
+		{44F82D41-9EFF-4D2A-BC13-5B161D8F50B9} = {3D713270-49CD-4B27-B070-14E63A332688}
+	EndGlobalSection
+EndGlobal
