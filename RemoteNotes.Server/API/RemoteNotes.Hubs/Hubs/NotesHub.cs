@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.SignalR;
 
-namespace RemoteNotesServer.Hubs
+namespace RemoteNotes.Hubs.Hubs
 {
     public class NotesHub : Hub
     {
