@@ -2,17 +2,25 @@
 {
     public class ApiResponse
     {
-        public bool IsSuccess { protected set; get; }
+        public EResponseStatus Status { set; get; }
+        
+        public string Message { set; get; }
         
         public void SetSuccess()
         {
-            IsSuccess = true;
+            Status = EResponseStatus.Success;
+        }
+
+        public void SetOtherResult(EResponseStatus status, string message = null)
+        {
+            Status = status;
+            Message = message;
         }
     }
 
     public class ApiResponse<T> : ApiResponse
     {
-        public T Result { get; private set; }
+        public T Result { get; set; }
         
         public void SetSuccess(T result)
         {

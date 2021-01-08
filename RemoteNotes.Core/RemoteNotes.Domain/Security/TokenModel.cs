@@ -1,4 +1,10 @@
-$HEADER$namespace $NAMESPACE$
+using System;
+
+namespace RemoteNotes.Domain.Security
 {
-  public class $CLASS$ {$END$}
+    public class TokenModel
+    {
+        public string Token { get; set; }
+        public DateTimeOffset ExpireAt { get; set; }
+    }
 }

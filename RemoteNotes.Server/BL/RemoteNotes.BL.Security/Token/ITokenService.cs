@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using RemoteNotes.Domain.Security;
 
 namespace RemoteNotes.BL.Security.Token
 {

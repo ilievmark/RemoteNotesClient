@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using RemoteNotes.BL.Security.Token;
+using System.Security.Claims;
 using RemoteNotes.DAL.Models;
+using RemoteNotes.Domain.Security;
 
 namespace RemoteNotes.BL.Security.UserToken
 {
@@ -8,9 +9,9 @@ namespace RemoteNotes.BL.Security.UserToken
     {
         TokenModel CreateToken(UserRead user);
 
-        string UserId(string token);
+        string UserId(IEnumerable<Claim> claims);
 
-        string UserName(string token);
+        string UserName(IEnumerable<Claim> claims);
 
         bool IsTokenValid(string token);
 

@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using RemoteNotes.BL.Security.Token;
 using RemoteNotes.DAL.Models;
+using RemoteNotes.Domain.Security;
 
 namespace RemoteNotes.BL.Security.UserToken
 {
@@ -23,11 +25,11 @@ namespace RemoteNotes.BL.Security.UserToken
         public TokenModel CreateToken(UserRead user)
             => _tokenService.CreateToken(UserClaims(user));
 
-        public string UserId(string token)
-            => GetFormToken(UserIdKey, token);
+        public string UserId(IEnumerable<Claim> claims)
+            => claims.First(x => x.Type == UserIdKey).Value;
 
-        public string UserName(string token)
-            => GetFormToken(UserNameKey, token);
+        public string UserName(IEnumerable<Claim> claims)
+            => claims.First(x => x.Type == UserNameKey).Value;
 
         public bool IsTokenValid(string token)
             => _tokenService.IsTokenValid(token);
@@ -47,13 +49,6 @@ namespace RemoteNotes.BL.Security.UserToken
                 { UserIdKey, user.Id.ToString() },
                 { UserNameKey, user.Username }
             };
-
-        private string GetFormToken(string key, string token)
-        {
-            var claims = _tokenService.GetClaims(token);
-
-            return claims.First(x => x.Type == key).Value;
-        }
 
         #endregion
     }

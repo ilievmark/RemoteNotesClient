@@ -20,6 +20,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ApiResponse.cs" />
+    <Compile Include="EResponseStatus.cs" />
+    <Compile Include="Requests\LoginRequest.cs" />
+    <Compile Include="Response\AuthorizationResponse.cs" />
+    <Compile Include="Security\TokenModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Requests\" />
+    <Folder Include="Response\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
