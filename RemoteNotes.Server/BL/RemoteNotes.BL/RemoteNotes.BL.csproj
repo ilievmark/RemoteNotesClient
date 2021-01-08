@@ -5,14 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="BCrypt.Net" Version="0.1.0" />
-      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\..\..\RemoteNotes.Core\RemoteNotes.Domain\RemoteNotes.Domain.csproj" />
+      <ProjectReference Include="..\..\DAL\RemoteNotes.DAL.Contract\RemoteNotes.DAL.Contract.csproj" />
       <ProjectReference Include="..\..\DAL\RemoteNotes.DAL.Models\RemoteNotes.DAL.Models.csproj" />
+      <ProjectReference Include="..\..\RemoteNotes.DAL.Contract\RemoteNotes.DAL.Contract.csproj" />
       <ProjectReference Include="..\..\RemoteNotes.DAL.Models\RemoteNotes.DAL.Models.csproj" />
+      <ProjectReference Include="..\RemoteNotes.BL.Security\RemoteNotes.BL.Security.csproj" />
     </ItemGroup>
 
 </Project>
