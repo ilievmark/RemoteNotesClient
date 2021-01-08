@@ -1,26 +1,45 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR.Client;
+using RemoteNotes.Service.Client.Contract.Authorization;
 using RemoteNotes.Service.Client.Contract.Hub;
 using RemoteNotes.Service.Client.Contract.Model;
 
 namespace RemoteNotes.Service.Domain.Hub
 {
-    public class NotesHub : BaseHub, IHubConnection, INotesHub
+    public class NotesHub : BaseHub, INotesHub
     {
-        public bool IsConnected { get; }
-        public Task ConnectAsync()
+        private readonly IAuthorizationHolder _authorizationHolder;
+
+        private string HubUrl => Constants.BaseUrl + "/notes";
+
+        public NotesHub(IAuthorizationHolder authorizationHolder)
         {
-            throw new System.NotImplementedException();
+            _authorizationHolder = authorizationHolder;
         }
 
-        public Task DisconnectAsync()
+        protected override HubConnection BuildConnection()
         {
-            throw new System.NotImplementedException();
+            return new HubConnectionBuilder()
+                .WithUrl(
+                    HubUrl,
+                    options => options.AccessTokenProvider = GetTokenAsync)
+                .Build();
         }
+
+        protected override void SubscribeEvents(HubConnection hubConnection)
+        {
+        }
+
+        private async Task<string> GetTokenAsync()
+            => _authorizationHolder.GetData()?.TokenModel?.Token;
 
         public Task<IEnumerable<NoteModel>> GetNotesAsync()
         {
-            throw new System.NotImplementedException();
+            if (!IsConnected)
+                ConnectAsync();
+
+            return _hubConnection.InvokeCoreAsync<IEnumerable<NoteModel>>("GetNotes", new object[] { });
         }
     }
 }

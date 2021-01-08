@@ -1,6 +1,6 @@
 ﻿using System;
 using Autofac;
-using RemoteNotes.Service.Client.Contract;
+using RemoteNotes.Service.Client.Contract.Authorization;
 using RemoteNotes.UI.Shell.Module;
 using RemoteNotes.UI.Shell.Navigation;
 using RemoteNotes.UI.ViewModel;

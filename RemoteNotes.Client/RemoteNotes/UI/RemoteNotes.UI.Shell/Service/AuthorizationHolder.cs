@@ -1,18 +1,19 @@
+using System;
 using Newtonsoft.Json;
-using RemoteNotes.Service.Client.Contract;
-using RemoteNotes.Service.Client.Contract.Model;
+using RemoteNotes.Domain.Response;
+using RemoteNotes.Service.Client.Contract.Authorization;
 using Xamarin.Essentials;
 
 namespace RemoteNotes.UI.Shell.Service
 {
     public class AuthorizationHolder : IAuthorizationHolder, IAuthorizationUpdater
     {
-        public bool IsAuthorized => GetData()?.Success ?? false;
+        public bool IsAuthorized => GetData()?.TokenModel?.ExpireAt > DateTime.UtcNow;
 
-        public AuthResult GetData()
-            => JsonConvert.DeserializeObject<AuthResult>(Preferences.Get(nameof(AuthResult), string.Empty));
+        public AuthorizationResponse GetData()
+            => JsonConvert.DeserializeObject<AuthorizationResponse>(Preferences.Get(nameof(AuthorizationResponse), string.Empty));
 
-        public void SetData(AuthResult data)
-            => Preferences.Set(nameof(AuthResult), JsonConvert.SerializeObject(data));
+        public void SetData(AuthorizationResponse data)
+            => Preferences.Set(nameof(AuthorizationResponse), JsonConvert.SerializeObject(data));
     }
 }

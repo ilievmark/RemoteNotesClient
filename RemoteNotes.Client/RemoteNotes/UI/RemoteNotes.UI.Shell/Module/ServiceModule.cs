@@ -1,6 +1,7 @@
+using System.Net.Http;
 using Autofac;
-using Autofac.Core;
 using RemoteNotes.Service.Client.Contract;
+using RemoteNotes.Service.Client.Contract.Authorization;
 using RemoteNotes.Service.Client.Contract.Hub;
 using RemoteNotes.Service.Client.Stub;
 
@@ -14,24 +15,19 @@ namespace RemoteNotes.UI.Shell.Module
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.Register(c => new HttpClient());
             builder.RegisterType<NotesService>().As<INotesService>();
-            builder.RegisterType<NotesHub>().As<INotesHub>();
             builder.RegisterType<AuthorizationHolder>().As<IAuthorizationHolder>().As<IAuthorizationUpdater>();
-            
-            builder
-                .RegisterType<AuthorizationHub>()
-                .AsSelf()
-                .As<IAuthorizationHub>();
 
+            builder.RegisterType<NotesHub>().As<INotesHub>();
             builder
                 .Register(
                     c => new HubSafeGuaranteeConnectionDecorator(
-                        c.Resolve<AuthorizationHub>()))
-                .Named<IHubConnection>(nameof(AuthorizationHub));
+                        c.Resolve<NotesHub>()))
+                .Named<IHubConnection>(nameof(NotesHub));
 
             builder
                 .RegisterType<AuthorizationService>()
-                .WithParameter(ResolvedParameter.ForNamed<IHubConnection>(nameof(AuthorizationHub)))
                 .As<IAuthorizationService>();
         }
     }

@@ -3,9 +3,9 @@ using System.IO;
 using System.Security.Authentication;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RemoteNotes.Domain.Requests;
 using RemoteNotes.Rules.Contract;
-using RemoteNotes.Service.Client.Contract;
-using RemoteNotes.Service.Client.Contract.Model;
+using RemoteNotes.Service.Client.Contract.Authorization;
 using RemoteNotes.UI.ViewModel.Abstract;
 using RemoteNotes.UI.ViewModel.Instrument;
 using RemoteNotes.UI.ViewModel.Service;
@@ -91,21 +91,21 @@ namespace RemoteNotes.UI.ViewModel
 
         private async Task LoginAsync(string login, string password)
         {
-            var authModel = AuthModel.From(login, password);
+            var authModel = new LoginRequest { Login = login, Password = password };
             var result = await _authorizationService.LoginAsync(authModel);
 
-            if (result.Success)
-                await LoginSuccessAsync(result);
+            if (result.TokenModel != null)
+                await LoginSuccessAsync();
             else
-                await LoginNotSuccessAsync(result);
+                await LoginNotSuccessAsync();
         }
 
-        private Task LoginSuccessAsync(AuthResult result)
+        private Task LoginSuccessAsync()
         {
             return _navigationController.NavigateToRootWith(PageKeys.Dashboard);
         }
 
-        private async Task LoginNotSuccessAsync(AuthResult result)
+        private async Task LoginNotSuccessAsync()
         {
             SetLoginErrorMessage("Cant login with given credentials.");
         }

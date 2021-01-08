@@ -25,5 +25,6 @@
       <ProjectReference Include="..\RemoteNotes.UI.ViewModel\RemoteNotes.UI.ViewModel.csproj" />
       <ProjectReference Include="..\..\..\..\RemoteNotes.Core\RemoteNotes.Rules\RemoteNotes.Rules.csproj" />
       <ProjectReference Include="..\..\..\..\RemoteNotes.Core\RemoteNotes.Rules.Contract\RemoteNotes.Rules.Contract.csproj" />
+      <ProjectReference Include="..\..\..\..\RemoteNotes.Core\RemoteNotes.Domain\RemoteNotes.Domain.csproj" />
     </ItemGroup>
 </Project>
