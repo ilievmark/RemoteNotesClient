@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using RemoteNotes.BL.Security.Token;
-using RemoteNotes.DAL.Models;
+using RemoteNotes.Domain.Entity;
 using RemoteNotes.Domain.Security;
 
 namespace RemoteNotes.BL.Security.UserToken
@@ -22,7 +22,7 @@ namespace RemoteNotes.BL.Security.UserToken
             _tokenService = tokenService;
         }
 
-        public TokenModel CreateToken(UserRead user)
+        public TokenModel CreateToken(User user)
             => _tokenService.CreateToken(UserClaims(user));
 
         public string UserId(IEnumerable<Claim> claims)
@@ -35,7 +35,7 @@ namespace RemoteNotes.BL.Security.UserToken
 
         #region -- Private methods --
 
-        private IDictionary<string, string> UserClaims(UserRead user)
+        private IDictionary<string, string> UserClaims(User user)
             => new Dictionary<string, string>
             {
                 { UserIdKey, user.Id.ToString() },

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using RemoteNotes.BL.Note;
 using RemoteNotes.BL.Security.UserToken;
-using RemoteNotes.DAL.Models;
+using RemoteNotes.Domain.Entity;
 
 namespace RemoteNotes.Hubs.Hubs
 {
@@ -23,7 +23,7 @@ namespace RemoteNotes.Hubs.Hubs
             _noteService = noteService;
         }
         
-        public Task<IEnumerable<Note>> GetNotes()
+        public Task<List<Note>> GetNotes()
         {
             var claims = Context.User.Claims;
             var userId = _userTokenService.UserId(claims);

@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RemoteNotes.BL.Authorization;
 using RemoteNotes.Domain;
@@ -32,6 +33,18 @@ namespace RemoteNotes.API.Controllers
             return Ok(serverResult);
         }
         
+        [HttpPost, Route("register")]
+        public async Task<ActionResult> RegisterAsync([FromBody] LoginRequest request)
+        {
+            var serverResult = new ApiResponse<AuthorizationResponse>();
+            var tokenData = await _authorizationService.LogInAsync(request.Login, request.Password);
+
+            serverResult.SetSuccess(new AuthorizationResponse(tokenData));
+
+            return Ok(serverResult);
+        }
+        
+        [Authorize]
         [HttpPost, Route("refresh")]
         public async Task<ActionResult> RefreshAsync()
         {

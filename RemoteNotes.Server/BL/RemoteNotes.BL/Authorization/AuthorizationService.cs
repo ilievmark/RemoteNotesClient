@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using RemoteNotes.BL.Security.Password;
 using RemoteNotes.BL.Security.UserToken;
 using RemoteNotes.DAL.Contract;
-using RemoteNotes.DAL.Models;
+using RemoteNotes.Domain.Entity;
 using RemoteNotes.Domain.Security;
 
 namespace RemoteNotes.BL.Authorization
@@ -36,7 +36,7 @@ namespace RemoteNotes.BL.Authorization
         public Task<TokenModel> RefreshTokenAsync(string refreshToken)
             => Task.FromResult(_userTokenService.RefreshToken(refreshToken));
 
-        private void ValidateUser(UserRead userData, string password)
+        private void ValidateUser(User userData, string password)
         {
             if (string.IsNullOrEmpty(password))
                 throw new ArgumentNullException(nameof(password));

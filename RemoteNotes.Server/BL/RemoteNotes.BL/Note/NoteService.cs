@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using RemoteNotes.DAL.Contract;
 
@@ -14,11 +13,8 @@ namespace RemoteNotes.BL.Note
         {
             _noteRepository = noteRepository;
         }
-        
-        public async Task<IEnumerable<DAL.Models.Note>> GetNotesAsync(Guid userId)
-        {
-            var allUserNotes = await _noteRepository.GetByUserIdAsync(userId);
-            return allUserNotes.Select(n => new DAL.Models.Note(n));
-        }
+
+        public Task<List<Domain.Entity.Note>> GetNotesAsync(Guid userId)
+            => _noteRepository.GetByUserIdAsync(userId);
     }
 }

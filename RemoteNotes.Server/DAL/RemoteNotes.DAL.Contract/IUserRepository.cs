@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
-using RemoteNotes.DAL.Models;
+using RemoteNotes.Domain.Entity;
 
 namespace RemoteNotes.DAL.Contract
 {
-    public interface IUserRepository : ICRUDRepository<UserRead>
+    public interface IUserRepository : ICRUDRepository<User>
     {
-        Task<UserRead> GetUserAsync(string username);
+        Task<User> GetUserAsync(string username);
     }
 }

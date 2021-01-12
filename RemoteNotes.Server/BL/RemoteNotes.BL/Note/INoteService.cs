@@ -6,6 +6,6 @@ namespace RemoteNotes.BL.Note
 {
     public interface INoteService
     {
-        Task<IEnumerable<DAL.Models.Note>> GetNotesAsync(Guid userId);
+        Task<List<Domain.Entity.Note>> GetNotesAsync(Guid userId);
     }
 }
