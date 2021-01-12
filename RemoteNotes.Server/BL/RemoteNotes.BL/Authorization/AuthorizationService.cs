@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using RemoteNotes.BL.Security.Password;
@@ -31,6 +32,9 @@ namespace RemoteNotes.BL.Authorization
             ValidateUser(user, password);
             return _userTokenService.CreateToken(user);
         }
+
+        public Task<TokenModel> RefreshTokenAsync(string refreshToken)
+            => Task.FromResult(_userTokenService.RefreshToken(refreshToken));
 
         private void ValidateUser(UserRead userData, string password)
         {

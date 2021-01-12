@@ -32,8 +32,27 @@ namespace RemoteNotes.BL.Security.Token
                 ExpireAt = expireTime
             };
         }
+        
+        private TokenModel CreateToken(IEnumerable<Claim> claims)
+        {
+            var now = DateTime.UtcNow;
+            var expireTime = now.Add(TimeSpan.FromMinutes(AuthOptions.TokenLifetimeMinutes));
+            var jwt = new JwtSecurityToken(
+                issuer: AuthOptions.Issuer,
+                audience: AuthOptions.Audience,
+                notBefore: now,
+                claims: claims,
+                expires: expireTime,
+                signingCredentials: new SigningCredentials(AuthOptions.SymmetricSecurityKey, SecurityAlgorithms.HmacSha256));
 
-        public TokenModel RefreshToken(string token, IDictionary<string, string> claimsLookUp)
+            return new TokenModel
+            {
+                Token = new JwtSecurityTokenHandler().WriteToken(jwt),
+                ExpireAt = expireTime
+            };
+        }
+
+        public TokenModel RefreshToken(string token)
         {
             var handler = new JwtSecurityTokenHandler();
             bool isValid;
@@ -62,7 +81,7 @@ namespace RemoteNotes.BL.Security.Token
             if (!isValid)
                 throw new Exception("Invalid token");
 
-            return CreateToken(claimsLookUp);
+            return CreateToken(GetClaims(token));
         }
 
         public IEnumerable<Claim> GetClaims(string token)

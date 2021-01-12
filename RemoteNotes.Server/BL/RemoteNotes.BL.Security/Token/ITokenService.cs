@@ -13,7 +13,7 @@ namespace RemoteNotes.BL.Security.Token
 
         bool IsTokenValid(string token);
 
-        TokenModel RefreshToken(string token, IDictionary<string, string> claimsLookUp);
+        TokenModel RefreshToken(string token);
 
         bool IsTokenExpired(string token, DateTime byDate);
     }

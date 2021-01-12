@@ -28,16 +28,8 @@ namespace RemoteNotes.BL.Security.UserToken
         public string UserId(IEnumerable<Claim> claims)
             => claims.First(x => x.Type == UserIdKey).Value;
 
-        public string UserName(IEnumerable<Claim> claims)
-            => claims.First(x => x.Type == UserNameKey).Value;
-
-        public bool IsTokenValid(string token)
-            => _tokenService.IsTokenValid(token);
-
-        public TokenModel RefreshToken(string token, IDictionary<string, string> claimsLookUp)
-        {
-            throw new System.NotImplementedException();
-        }
+        public TokenModel RefreshToken(string token)
+            => _tokenService.RefreshToken(token);
 
         #endregion
 

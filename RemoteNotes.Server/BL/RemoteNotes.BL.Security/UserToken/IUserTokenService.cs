@@ -11,10 +11,6 @@ namespace RemoteNotes.BL.Security.UserToken
 
         string UserId(IEnumerable<Claim> claims);
 
-        string UserName(IEnumerable<Claim> claims);
-
-        bool IsTokenValid(string token);
-
-        TokenModel RefreshToken(string token, IDictionary<string, string> claimsLookUp);
+        TokenModel RefreshToken(string token);
     }
 }

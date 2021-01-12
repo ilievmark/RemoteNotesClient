@@ -14,6 +14,8 @@ namespace RemoteNotes.API.Controllers
     {
         private readonly AuthorizationService _authorizationService;
 
+        protected string Token => Request.Headers["Authorization"];
+        
         public AuthorizationController(AuthorizationService authorizationService)
         {
             _authorizationService = authorizationService;
@@ -24,6 +26,17 @@ namespace RemoteNotes.API.Controllers
         {
             var serverResult = new ApiResponse<AuthorizationResponse>();
             var tokenData = await _authorizationService.LogInAsync(request.Login, request.Password);
+
+            serverResult.SetSuccess(new AuthorizationResponse(tokenData));
+
+            return Ok(serverResult);
+        }
+        
+        [HttpPost, Route("refresh")]
+        public async Task<ActionResult> RefreshAsync()
+        {
+            var serverResult = new ApiResponse<AuthorizationResponse>();
+            var tokenData = await _authorizationService.RefreshTokenAsync(Token);
 
             serverResult.SetSuccess(new AuthorizationResponse(tokenData));
 
