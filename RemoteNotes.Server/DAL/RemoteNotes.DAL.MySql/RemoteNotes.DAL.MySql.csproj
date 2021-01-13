@@ -7,6 +7,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\RemoteNotes.Core\RemoteNotes.Domain\RemoteNotes.Domain.csproj" />
       <ProjectReference Include="..\RemoteNotes.DAL.Contract\RemoteNotes.DAL.Contract.csproj" />
+      <ProjectReference Include="..\RemoteNotes.DAL\RemoteNotes.DAL.csproj" />
     </ItemGroup>
 
     <ItemGroup>
