@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\RemoteNotes.Core\RemoteNotes.Domain\RemoteNotes.Domain.csproj" />
+      <ProjectReference Include="..\..\..\RemoteNotes.Core\RemoteNotes.Rules.Contract\RemoteNotes.Rules.Contract.csproj" />
+      <ProjectReference Include="..\..\DAL\RemoteNotes.DAL.Contract\RemoteNotes.DAL.Contract.csproj" />
+      <ProjectReference Include="..\..\RemoteNotes.DAL.Contract\RemoteNotes.DAL.Contract.csproj" />
+      <ProjectReference Include="..\RemoteNotes.BL.Security\RemoteNotes.BL.Security.csproj" />
+    </ItemGroup>
+
+</Project>

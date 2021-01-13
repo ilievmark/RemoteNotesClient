@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\RemoteNotes.Core\RemoteNotes.Domain\RemoteNotes.Domain.csproj" />
+      <ProjectReference Include="..\RemoteNotes.DAL.Contract\RemoteNotes.DAL.Contract.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MySql.Data" Version="8.0.22" />
+    </ItemGroup>
+
+</Project>
