@@ -14,8 +14,8 @@ namespace RemoteNotes.DAL.Contract
         void ExecuteCommand(IDbCommand command, bool commit);
 
         T GetById<T>(string query, int id);
-        
-        T GetByQueryParameter<T>(string query, string parameter);
+
+        T GetByQueryParameter<T>(string query, string parameterName, string parameter);
 
         List<T> ExecuteReader<T>(IDbCommand command);
 

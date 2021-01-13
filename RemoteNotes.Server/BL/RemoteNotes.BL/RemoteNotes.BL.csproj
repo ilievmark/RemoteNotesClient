@@ -8,9 +8,7 @@
       <ProjectReference Include="..\..\..\RemoteNotes.Core\RemoteNotes.Domain\RemoteNotes.Domain.csproj" />
       <ProjectReference Include="..\..\..\RemoteNotes.Core\RemoteNotes.Rules.Contract\RemoteNotes.Rules.Contract.csproj" />
       <ProjectReference Include="..\..\DAL\RemoteNotes.DAL.Contract\RemoteNotes.DAL.Contract.csproj" />
-      <ProjectReference Include="..\..\DAL\RemoteNotes.DAL.Models\RemoteNotes.DAL.Models.csproj" />
       <ProjectReference Include="..\..\RemoteNotes.DAL.Contract\RemoteNotes.DAL.Contract.csproj" />
-      <ProjectReference Include="..\..\RemoteNotes.DAL.Models\RemoteNotes.DAL.Models.csproj" />
       <ProjectReference Include="..\RemoteNotes.BL.Security\RemoteNotes.BL.Security.csproj" />
     </ItemGroup>
 

@@ -11,7 +11,6 @@
     <ItemGroup>
       <ProjectReference Include="..\..\BL\RemoteNotes.BL.Security\RemoteNotes.BL.Security.csproj" />
       <ProjectReference Include="..\..\BL\RemoteNotes.BL\RemoteNotes.BL.csproj" />
-      <ProjectReference Include="..\..\DAL\RemoteNotes.DAL.Models\RemoteNotes.DAL.Models.csproj" />
     </ItemGroup>
 
 </Project>

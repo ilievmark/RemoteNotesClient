@@ -14,7 +14,7 @@ namespace RemoteNotes.DAL.MySql
         public Task<User> GetUserAsync(string username)
         {
             string queryCommand = string.Format("Get{0}ByName", _entityName);
-            return Task.FromResult(_sqlDataManager.GetByQueryParameter<User>(queryCommand, username));
+            return Task.FromResult(_sqlDataManager.GetByQueryParameter<User>(queryCommand, "Username", username));
         }
 
         protected override void AddInputParameterCollection(IDbCommand sqlCommand, User note)
