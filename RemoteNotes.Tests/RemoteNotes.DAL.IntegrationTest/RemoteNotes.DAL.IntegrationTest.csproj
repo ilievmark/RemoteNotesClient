@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0-preview-20180816-01" />
+    <PackageReference Include="NUnit" Version="3.10.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.DAL\Common.DAL.csproj" />
+    <ProjectReference Include="..\..\Common\Common.Utility\Common.Utility.csproj" />
+    <ProjectReference Include="..\..\RemoteNotes.Core\RemoteNotes.Core.Domain\RemoteNotes.Core.Domain.csproj" />
+    <ProjectReference Include="..\..\RemoteNotes.Core\RemoteNotes.Domain\RemoteNotes.Domain.csproj" />
+    <ProjectReference Include="..\..\RemoteNotes.Server\BL\RemoteNotes.BL.Security\RemoteNotes.BL.Security.csproj" />
+    <ProjectReference Include="..\..\RemoteNotes.Server\DAL\RemoteNotes.DAL.Contract\RemoteNotes.DAL.Contract.csproj" />
+    <ProjectReference Include="..\..\RemoteNotes.Server\DAL\RemoteNotes.DAL.MySql\RemoteNotes.DAL.MySql.csproj" />
+    <ProjectReference Include="..\RemoteNotes.DAL.Contract\RemoteNotes.DAL.Contract.csproj" />
+    <ProjectReference Include="..\RemoteNotes.DAL.MySql\RemoteNotes.DAL.MySql.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="connectionStrings.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\default-image.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Configuration\connectionStrings.config" Link="Configuration\connectionStrings.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
