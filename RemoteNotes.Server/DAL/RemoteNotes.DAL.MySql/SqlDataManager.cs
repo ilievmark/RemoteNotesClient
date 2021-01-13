@@ -74,7 +74,7 @@ namespace RemoteNotes.DAL.MySql
             }
         }
 
-        public T GetById<T>(string query, int id)
+        public T GetById<T>(string query, Guid id)
         {
             MySqlCommand command = new MySqlCommand(query);
             command.CommandType = CommandType.StoredProcedure;

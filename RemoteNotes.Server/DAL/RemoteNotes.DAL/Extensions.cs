@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 
-namespace RemoteNotes.DAL.MySql
+namespace RemoteNotes.DAL
 {
     public static class Extensions
     {
@@ -13,6 +13,6 @@ namespace RemoteNotes.DAL.MySql
             {
                 yield return projection(reader);
             }
-        }
+        }   
     }
 }

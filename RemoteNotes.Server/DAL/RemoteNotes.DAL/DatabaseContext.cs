@@ -2,7 +2,7 @@ using System;
 using System.Data;
 using MySql.Data.MySqlClient;
 
-namespace RemoteNotes.DAL.MySql
+namespace RemoteNotes.DAL
 {
     public class DatabaseContext
     {
