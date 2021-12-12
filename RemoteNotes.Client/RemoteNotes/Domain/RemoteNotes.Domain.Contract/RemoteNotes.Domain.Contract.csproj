@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\RemoteNotes.Core\RemoteNotes.Domain\RemoteNotes.Domain.csproj" />
+      <ProjectReference Include="..\RemoteNotes.Domain.Core\RemoteNotes.Domain.Core.csproj" />
+    </ItemGroup>
+
+</Project>
