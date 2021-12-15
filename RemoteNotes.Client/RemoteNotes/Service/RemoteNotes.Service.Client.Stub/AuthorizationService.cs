@@ -19,10 +19,10 @@ namespace RemoteNotes.Service.Client.Stub
 
         public bool IsAuthorized { get; private set; }
 
-        public async Task<AuthorizationResponse> LoginAsync(LoginRequest loginRequest)
+        public async Task<AuthorizationResponse> LoginAsync(SignInRequest signInRequest)
         {
-            if (loginRequest == null)
-                throw new ArgumentNullException(nameof(loginRequest));
+            if (signInRequest == null)
+                throw new ArgumentNullException(nameof(signInRequest));
 
             var authResult = new AuthorizationResponse(new TokenModel());
             await Task.Delay(1000);
