@@ -5,54 +5,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using RemoteNotes.Domain.Tools;
 
 namespace RemoteNotes.Domain.Extensions
 {
     public static class HttpExtensions
     {
-        public static Task<HttpResponseMessage> PostAsync(this HttpClient client, string resource, object requestBody, CancellationToken cancellationToken)
-            => client.SendAsync(
-                new HttpRequestMessage
-                {
-                    Content = requestBody.ToHttpContent(),
-                    Method = HttpMethod.Post,
-                    RequestUri = new Uri(resource)
-                }, cancellationToken);
-
-        public static Task<HttpResponseMessage> PutAsync(this HttpClient client, string resource, object requestBody, CancellationToken cancellationToken)
-            => client.SendAsync(
-                new HttpRequestMessage
-                {
-                    Content = requestBody.ToHttpContent(),
-                    Method = HttpMethod.Put,
-                    RequestUri = new Uri(resource)
-                }, cancellationToken);
-
-        public static Task<HttpResponseMessage> DeleteAsync(this HttpClient client, string resource, object requestBody, CancellationToken cancellationToken)
-            => client.SendAsync(
-                new HttpRequestMessage
-                {
-                    Content = requestBody.ToHttpContent(),
-                    Method = HttpMethod.Delete,
-                    RequestUri = new Uri(resource)
-                }, cancellationToken);
-
-        public static Task<HttpResponseMessage> GetAsync(this HttpClient client, string resource, CancellationToken cancellationToken)
-            => client.SendAsync(
-                new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri(resource)
-                }, cancellationToken);
-
-        public static Task<HttpResponseMessage> PatchAsync(this HttpClient client, string resource, object requestBody, CancellationToken cancellationToken)
-            => client.SendAsync(
-                new HttpRequestMessage()
-                {
-                    Content = requestBody.ToHttpContent(),
-                    Method = new HttpMethod("PATCH"),
-                    RequestUri = new Uri(resource)
-                }, cancellationToken);
+        public static HttpRequestBuilder CreateRequest(this HttpClient client)
+            => new HttpRequestBuilder(client);
 
         public static HttpContent ToHttpContent(this object requestBody)
         {
@@ -65,7 +25,7 @@ namespace RemoteNotes.Domain.Extensions
             }
             else
             {
-                var jsonString = JsonConvert.SerializeObject(requestBody, converters: new JsonConverter[] { new IsoDateTimeConverter() });
+                var jsonString = JsonConvert.SerializeObject(requestBody, new IsoDateTimeConverter());
                 result = new StringContent(jsonString, Encoding.UTF8, "application/json");
             }
 
