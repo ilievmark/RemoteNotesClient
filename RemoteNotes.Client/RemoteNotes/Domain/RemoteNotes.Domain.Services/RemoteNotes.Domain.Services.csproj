@@ -5,12 +5,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Acr.UserDialogs" Version="7.2.0.561" />
+      <PackageReference Include="Autofac" Version="6.3.0" />
       <PackageReference Include="Xamarin.Forms" Version="5.0.0.2244" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\..\RemoteNotes.Core\RemoteNotes.Core\RemoteNotes.Core.csproj" />
-      <ProjectReference Include="..\..\..\..\RemoteNotes.Core\RemoteNotes.Domain\RemoteNotes.Domain.csproj" />
+      <ProjectReference Include="..\..\Service\RemoteNotes.Service.Client.Contract\RemoteNotes.Service.Client.Contract.csproj" />
+      <ProjectReference Include="..\RemoteNotes.Domain.Contract\RemoteNotes.Domain.Contract.csproj" />
       <ProjectReference Include="..\RemoteNotes.Domain.Core\RemoteNotes.Domain.Core.csproj" />
     </ItemGroup>
 

@@ -5,11 +5,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
+      <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Contract\RemoteNotes.Domain.Contract.csproj" />
+      <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Core\RemoteNotes.Domain.Core.csproj" />
+      <ProjectReference Include="..\RemoteNotes.API.Contract\RemoteNotes.API.Contract.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Contract\RemoteNotes.Domain.Contract.csproj" />
-      <ProjectReference Include="..\RemoteNotes.UI.ViewModel\RemoteNotes.UI.ViewModel.csproj" />
-    </ItemGroup>
 </Project>
