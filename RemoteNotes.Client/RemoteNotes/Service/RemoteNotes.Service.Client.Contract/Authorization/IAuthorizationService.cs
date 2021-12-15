@@ -1,6 +1,6 @@
+using System.Threading;
 using System.Threading.Tasks;
-using RemoteNotes.Domain.Requests;
-using RemoteNotes.Domain.Response;
+using RemoteNotes.Domain.Security;
 
 namespace RemoteNotes.Service.Client.Contract.Authorization
 {
@@ -8,7 +8,9 @@ namespace RemoteNotes.Service.Client.Contract.Authorization
     {
         bool IsAuthorized { get; }
         
-        Task<AuthorizationResponse> LoginAsync(LoginRequest authModel);
+        Task<TokenModel> SignInAsync(string userName, string password, CancellationToken token);
+
+        Task<TokenModel> UpdateSessionAsync(string sessionToken, CancellationToken token);
 
         Task LogoutAsync();
     }

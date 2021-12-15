@@ -1,4 +1,4 @@
-﻿using RemoteNotes.Domain.Security;
+﻿using RemoteNotes.Domain.Models;
 
 namespace RemoteNotes.Domain.Response
 {
