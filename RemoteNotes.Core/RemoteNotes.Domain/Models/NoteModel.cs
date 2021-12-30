@@ -1,6 +1,6 @@
-namespace RemoteNotes.Service.Client.Contract.Model
+namespace RemoteNotes.Domain.Models
 {
-    public class NoteModel : INote
+    public class NoteModel
     {
         public int Id { get; set; }
         
