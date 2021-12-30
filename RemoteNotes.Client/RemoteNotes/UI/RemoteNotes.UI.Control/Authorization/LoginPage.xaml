@@ -12,7 +12,7 @@
     <Grid Padding="20"
           VerticalOptions="Center"
           ColumnDefinitions=".5*, .5*"
-          RowDefinitions=".3*, .3*, .3*, 40">
+          RowDefinitions=".3*, .3*, .3*, 40, 40">
         
         <Entry Grid.Row="0" Grid.ColumnSpan="2"
                Text="{Binding Login}"
@@ -22,9 +22,13 @@
                Text="{Binding Password}"
                Placeholder="Password"/>
         
-        <Button Grid.Row="2" Grid.Column="0"
+        <Button Grid.Row="3" Grid.Column="0"
                 Command="{Binding LoginCommand}"
                 Text="Login"/>
+        
+        <Button Grid.Row="4" Grid.Column="0"
+                Command="{Binding ToSignUpCommand}"
+                Text="Has no account?"/>
         
     </Grid>
        

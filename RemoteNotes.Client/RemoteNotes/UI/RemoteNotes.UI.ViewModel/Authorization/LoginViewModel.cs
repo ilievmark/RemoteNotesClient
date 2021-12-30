@@ -50,6 +50,13 @@ namespace RemoteNotes.UI.ViewModel.Authorization
         }
         
         public ICommand LoginCommand => new AsyncCommand(() => CommandExecutionHolderMethodAsync(OnLoginCommand));
+        
+        public ICommand ToSignUpCommand => new AsyncCommand(() => CommandExecutionHolderMethodAsync(OnToSignUpCommand));
+
+        private Task OnToSignUpCommand()
+        {
+            return NavigationService.NavigateNextAsync(PageTagConstants.SignUp, CancellationToken.None);
+        }
 
         private async Task OnLoginCommand()
         {
