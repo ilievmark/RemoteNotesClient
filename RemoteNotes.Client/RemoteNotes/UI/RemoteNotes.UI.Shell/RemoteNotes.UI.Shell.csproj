@@ -27,6 +27,7 @@
       <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Services\RemoteNotes.Domain.Services.csproj" />
       <ProjectReference Include="..\..\Service\RemoteNotes.Service.Client.Contract\RemoteNotes.Service.Client.Contract.csproj" />
       <ProjectReference Include="..\..\Service\RemoteNotes.Service.Client.Stub\RemoteNotes.Service.Client.Stub.csproj" />
+      <ProjectReference Include="..\..\Service\RemoteNotes.Service.Domain\RemoteNotes.Service.Domain.csproj" />
       <ProjectReference Include="..\RemoteNotes.UI.Control\RemoteNotes.UI.Control.csproj" />
       <ProjectReference Include="..\RemoteNotes.UI.ViewModel\RemoteNotes.UI.ViewModel.csproj" />
       <ProjectReference Include="..\..\..\..\RemoteNotes.Core\RemoteNotes.Rules\RemoteNotes.Rules.csproj" />

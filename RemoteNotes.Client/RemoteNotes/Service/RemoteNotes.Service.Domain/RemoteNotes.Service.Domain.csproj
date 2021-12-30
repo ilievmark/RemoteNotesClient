@@ -5,7 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\..\RemoteNotes.Core\RemoteNotes.Rules.Contract\RemoteNotes.Rules.Contract.csproj" />
+      <ProjectReference Include="..\..\BL\RemoteNotes.API.Contract\RemoteNotes.API.Contract.csproj" />
+      <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Contract\RemoteNotes.Domain.Contract.csproj" />
       <ProjectReference Include="..\..\RemoteNotes.Service.Client\RemoteNotes.Service.Client.Contract\RemoteNotes.Service.Client.Contract.csproj" />
+      <ProjectReference Include="..\RemoteNotes.Service.Client.Contract\RemoteNotes.Service.Client.Contract.csproj" />
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.1.3" />

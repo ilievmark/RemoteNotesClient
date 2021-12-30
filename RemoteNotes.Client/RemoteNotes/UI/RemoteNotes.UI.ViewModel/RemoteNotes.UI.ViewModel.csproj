@@ -11,5 +11,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\RemoteNotes.Service.Client\RemoteNotes.Service.Client.Contract\RemoteNotes.Service.Client.Contract.csproj" />
       <ProjectReference Include="..\..\..\..\RemoteNotes.Core\RemoteNotes.Rules.Contract\RemoteNotes.Rules.Contract.csproj" />
+      <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Core\RemoteNotes.Domain.Core.csproj" />
+      <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Services\RemoteNotes.Domain.Services.csproj" />
     </ItemGroup>
 </Project>

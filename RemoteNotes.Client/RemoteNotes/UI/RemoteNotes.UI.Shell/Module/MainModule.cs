@@ -6,9 +6,12 @@ namespace RemoteNotes.UI.Shell.Module
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterModule<CommonToolsModule>();
+            builder.RegisterModule<ApiBindingsModule>();
+            builder.RegisterModule<HubModule>();
+            builder.RegisterModule<AuthorizationModule>();
+            builder.RegisterModule<BusinesLogicModule>();
             builder.RegisterModule<NavigationModule>();
-            builder.RegisterModule<ServiceModule>();
-            builder.RegisterModule<RulesModule>();
         }
     }
 }
