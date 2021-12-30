@@ -1,15 +1,13 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
-using RemoteNotes.Domain.Core.Exceptions;
+using RemoteNotes.Domain.Exceptions;
 using RemoteNotes.Domain.Exceptions.Authorization;
 
 namespace RemoteNotes.Domain.Services.ViewModel
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : BindableBase
     {
         protected readonly IUserDialogs UserDialogs;
 
@@ -17,24 +15,12 @@ namespace RemoteNotes.Domain.Services.ViewModel
         {
             UserDialogs = userDialogs;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void SetProperty<T>(T value, ref T field, [CallerMemberName] string propertyName = null)
+        
+        private string _title;
+        public string Title
         {
-            field = value;
-            SendPropertyChangedEvent(propertyName);
-        }
-
-        protected void SendPropertyChangedEvent(string propertyName)
-        {
-            var args = new PropertyChangedEventArgs(propertyName);
-            PropertyChanged?.Invoke(this, args);
-            OnPropertyChanged(args);
-        }
-
-        protected virtual void OnPropertyChanged(PropertyChangedEventArgs args)
-        {
+            get => _title;
+            set => SetProperty(ref _title, value);
         }
 
         protected virtual async Task CommandExecutionHolderMethodAsync(
@@ -50,11 +36,11 @@ namespace RemoteNotes.Domain.Services.ViewModel
             }
             catch (AuthorizationException aex)
             {
-                UserDialogs.Alert("Your session is expired, pls relogin to continue");
+                ShowToast("Your session is expired, pls relogin to continue");
             }
             catch (NoInternetException iex)
             {
-                UserDialogs.Alert("No internet connection, pls check connection and repeat you request");
+                ShowToast("No internet connection, pls check connection and repeat you request");
             }
             catch (Exception ex)
             {
@@ -64,5 +50,11 @@ namespace RemoteNotes.Domain.Services.ViewModel
 
             afterMainAction?.Invoke();
         }
+        
+        protected Task ShowAlertAsync(string message)
+            => UserDialogs.AlertAsync(message);
+
+        protected void ShowToast(string message)
+            => UserDialogs.Toast(new ToastConfig(message));
     }
 }
