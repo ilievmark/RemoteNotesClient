@@ -1,6 +1,6 @@
 ﻿namespace RemoteNotes.Service.Domain
 {
-    public static class Constants
+    public static class AppConstants
     {
         public const string BaseUrl = "";
     }
