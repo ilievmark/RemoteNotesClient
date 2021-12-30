@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace RemoteNotes.UI.ViewModel.Instrument
+namespace RemoteNotes.UI.ViewModel.Tool
 {
     public class AsyncCommand : ICommand
     {

@@ -54,7 +54,9 @@
         <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="23.4.0.1" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Activity\BaseAppActivity.cs" />
         <Compile Include="MainActivity.cs" />
+        <Compile Include="Renderers\Pages\BaseContentPageRenderer.cs" />
         <Compile Include="Resources\Resource.Designer.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
@@ -70,6 +72,14 @@
         <AndroidResource Include="Resources\values\colors.xml" />
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Contract\RemoteNotes.Domain.Contract.csproj">
+          <Project>{6e03d8ca-7895-49d1-b675-3cec73fca3ea}</Project>
+          <Name>RemoteNotes.Domain.Contract</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\UI\RemoteNotes.UI.Control\RemoteNotes.UI.Control.csproj">
+          <Project>{bbc84bc1-03cf-4609-ba89-4ca676dc6180}</Project>
+          <Name>RemoteNotes.UI.Control</Name>
+        </ProjectReference>
         <ProjectReference Include="..\..\UI\RemoteNotes.UI.Shell\RemoteNotes.UI.Shell.csproj">
           <Project>{948d2b0b-a43e-4156-acdd-577d8303336f}</Project>
           <Name>RemoteNotes.UI.Shell</Name>
