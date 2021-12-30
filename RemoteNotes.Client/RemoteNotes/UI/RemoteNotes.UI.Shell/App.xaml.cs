@@ -1,56 +1,63 @@
-﻿using System;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Autofac;
-using RemoteNotes.Service.Client.Contract.Authorization;
+using RemoteNotes.Domain.Contract.Navigation;
+using RemoteNotes.Domain.Core.Constants;
+using RemoteNotes.Domain.Services.RootCasts;
+using RemoteNotes.Service.Client.Contract.Hub;
+using RemoteNotes.UI.Shell.Linking;
 using RemoteNotes.UI.Shell.Module;
-using RemoteNotes.UI.Shell.Navigation;
-using RemoteNotes.UI.ViewModel;
-using RemoteNotes.UI.ViewModel.Service;
 using Xamarin.Forms;
 
 namespace RemoteNotes.UI.Shell
 {
     public partial class App
     {
+        private IHubController _hubController;
+        private CancellationTokenSource _appCancellationTokenSource;
         private IContainer Container;
         
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage();
-            RegisterDependencies();
-            SetupNavigation();
+            MainPage = new NavigationPage(new ContentPage());
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
+            _appCancellationTokenSource = new CancellationTokenSource();
+
+            new PharmacyViewModelAssemblyIncluder().LinkAssembly();
+            new PharmacyViewAssemblyIncluder().LinkAssembly();
+
+            _hubController = Container.Resolve<IHubController>();
+            await _hubController.StartAsync();
         }
 
-        protected override void OnSleep()
+        protected override async void OnSleep()
         {
+            _appCancellationTokenSource.Cancel();
+            await _hubController.StopAsync();
         }
 
-        protected override void OnResume()
+        protected override async void OnResume()
         {
+            _appCancellationTokenSource = new CancellationTokenSource();
+            await _hubController.StartAsync();
         }
 
-        private void RegisterDependencies()
+        public override void RegisterDependencies(ContainerBuilder builder)
         {
-            var builder = new ContainerBuilder();
+            base.RegisterDependencies(builder);
+
             builder.RegisterModule<MainModule>();
+            
             builder.Register(c => new NavigationProvider(() => MainPage.Navigation));
-            builder.Register(c => new PageLocator(new Lazy<IContainer>(() => Container)));
-            Container = builder.Build();
         }
 
-        private async void SetupNavigation()
+        public override Task SetupNavigationAsync(INavigationService navigationService)
         {
-            var authHolder = Container.Resolve<IAuthorizationHolder>();
-            var navController = Container.Resolve<INavigationController>();
-            
-            if (authHolder.IsAuthorized)
-                await navController.NavigateToAsync(PageKeys.Dashboard);
-            else
-                await navController.NavigateToAsync(PageKeys.Login);
+            return navigationService.NavigateWithReplaceAsync(PageTagConstants.Dashboard, _appCancellationTokenSource.Token);
         }
     }
 }
