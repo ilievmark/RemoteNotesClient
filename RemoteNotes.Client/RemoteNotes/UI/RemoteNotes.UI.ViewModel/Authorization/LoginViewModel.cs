@@ -5,10 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
-using RemoteNotes.Domain.Contract.Authorization;
+using RemoteNotes.Domain.Contract.Navigation;
 using RemoteNotes.Domain.Core.Attributes;
 using RemoteNotes.Domain.Core.Constants;
-using RemoteNotes.Domain.Extensions;
 using RemoteNotes.Domain.Services.Navigation;
 using RemoteNotes.Domain.Services.ViewModel;
 using RemoteNotes.Service.Client.Contract.Authorization;
@@ -19,17 +18,14 @@ namespace RemoteNotes.UI.ViewModel.Authorization
     [ViewModelRegistration(NavigationTag = PageTagConstants.Login)]
     public class LoginViewModel : BaseNavigationViewModel
     {
-        private readonly IAuthorizationHolder _authorizationHolder;
         private readonly IAuthorizationService _authorizationService;
         
         public LoginViewModel(
-            NavigationService navigationService,
+            INavigationService navigationService,
             IUserDialogs userDialogs,
-            IAuthorizationHolder authorizationHolder,
             IAuthorizationService authorizationService)
             : base(navigationService, userDialogs)
         {
-            _authorizationHolder = authorizationHolder;
             _authorizationService = authorizationService;
 
             Title = "Login";
@@ -85,10 +81,9 @@ namespace RemoteNotes.UI.ViewModel.Authorization
         {
             await _authorizationService.SignInAsync(login, password, CancellationToken.None);
 
-            if (_authorizationHolder.GetLastSession().IsValid())
+            if (_authorizationService.IsAuthorized)
                 await NavigationService.NavigateWithReplaceAsync(PageTagConstants.Dashboard, CancellationToken.None);
-            else
-                await ShowAlertAsync("Cant login with given credentials.");
+            else await ShowAlertAsync("Cant login with given credentials.");
         }
     }
 }
