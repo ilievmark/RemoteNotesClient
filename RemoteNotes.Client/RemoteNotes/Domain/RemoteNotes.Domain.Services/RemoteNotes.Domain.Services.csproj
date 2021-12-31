@@ -5,9 +5,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Acr.UserDialogs" Version="7.2.0.561" />
+      <PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
       <PackageReference Include="Autofac" Version="6.3.0" />
-      <PackageReference Include="Xamarin.Forms" Version="5.0.0.2244" />
+      <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
     </ItemGroup>
 
     <ItemGroup>

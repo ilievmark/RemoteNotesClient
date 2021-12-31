@@ -5,10 +5,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="6.1.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-        <PackageReference Include="Xamarin.Essentials" Version="1.6.0-rc1" />
-        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
+        <PackageReference Include="Autofac" Version="6.3.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
     </ItemGroup>
 
     <ItemGroup>
@@ -19,14 +19,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\RemoteNotes.Service.Client\RemoteNotes.Service.Client.Stub\RemoteNotes.Service.Client.Stub.csproj" />
       <ProjectReference Include="..\..\..\RemoteNotes.Service\RemoteNotes.Service.Domain\RemoteNotes.Service.Domain.csproj" />
       <ProjectReference Include="..\..\BL\RemoteNotes.API.Contract\RemoteNotes.API.Contract.csproj" />
       <ProjectReference Include="..\..\BL\RemoteNotes.API\RemoteNotes.API.csproj" />
       <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Contract\RemoteNotes.Domain.Contract.csproj" />
       <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Services\RemoteNotes.Domain.Services.csproj" />
       <ProjectReference Include="..\..\Service\RemoteNotes.Service.Client.Contract\RemoteNotes.Service.Client.Contract.csproj" />
-      <ProjectReference Include="..\..\Service\RemoteNotes.Service.Client.Stub\RemoteNotes.Service.Client.Stub.csproj" />
       <ProjectReference Include="..\..\Service\RemoteNotes.Service.Domain\RemoteNotes.Service.Domain.csproj" />
       <ProjectReference Include="..\RemoteNotes.UI.Control\RemoteNotes.UI.Control.csproj" />
       <ProjectReference Include="..\RemoteNotes.UI.ViewModel\RemoteNotes.UI.ViewModel.csproj" />
