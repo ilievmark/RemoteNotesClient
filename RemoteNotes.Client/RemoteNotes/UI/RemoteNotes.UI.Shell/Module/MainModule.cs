@@ -10,7 +10,6 @@ namespace RemoteNotes.UI.Shell.Module
             builder.RegisterModule<ApiBindingsModule>();
             builder.RegisterModule<HubModule>();
             builder.RegisterModule<AuthorizationModule>();
-            builder.RegisterModule<BusinesLogicModule>();
             builder.RegisterModule<NavigationModule>();
         }
     }

@@ -15,6 +15,7 @@ namespace RemoteNotes.UI.Shell.Module
             builder.RegisterType<HubConfiguration>().SingleInstance();
             builder.RegisterType<HubReconnector>().Named<IHubReconnector>(Hubs.Notes).SingleInstance();
             builder.RegisterType<Hub>().SingleInstance()
+                   .WithParameter(TypedParameter.From(Hubs.Notes))
                    .Named<IHubConnection>(Hubs.Notes)
                    .Named<IHubObservable>(Hubs.Notes)
                    .Named<IHubMessager>(Hubs.Notes);
@@ -22,7 +23,8 @@ namespace RemoteNotes.UI.Shell.Module
             builder.RegisterType<HubController>().Named<IHubController>(Hubs.Notes).SingleInstance()
                    .WithParameter(ResolvedParameter.ForNamed<IHubReconnector>(Hubs.Notes))
                    .WithParameter(ResolvedParameter.ForNamed<IHubConnection>(Hubs.Notes))
-                   .WithParameter(ResolvedParameter.ForNamed<IHubObservable>(Hubs.Notes));
+                   .WithParameter(ResolvedParameter.ForNamed<IHubObservable>(Hubs.Notes))
+                   .WithParameter(TypedParameter.From(Hubs.Notes));
 
             builder.Register(
                     c => new HubCompositeController(
