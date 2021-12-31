@@ -15,7 +15,6 @@ namespace RemoteNotes.UI.Shell
     {
         private IHubController _hubController;
         private CancellationTokenSource _appCancellationTokenSource;
-        private IContainer Container;
         
         public App()
         {
@@ -27,8 +26,8 @@ namespace RemoteNotes.UI.Shell
         {
             _appCancellationTokenSource = new CancellationTokenSource();
 
-            new PharmacyViewModelAssemblyIncluder().LinkAssembly();
-            new PharmacyViewAssemblyIncluder().LinkAssembly();
+            new ViewModelAssemblyIncluder().LinkAssembly();
+            new ViewAssemblyIncluder().LinkAssembly();
 
             _hubController = Container.Resolve<IHubController>();
             await _hubController.StartAsync();

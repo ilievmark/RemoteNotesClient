@@ -1,11 +1,13 @@
-﻿using RemoteNotes.Domain.Contract.Authorization;
+﻿using System.Threading.Tasks;
+using RemoteNotes.Domain.Contract.Authorization;
 using RemoteNotes.Domain.Contract.Storage;
 using RemoteNotes.Domain.Core.Constants;
 using RemoteNotes.Domain.Models;
+using RemoteNotes.Service.Client.Contract.Hub;
 
 namespace RemoteNotes.Domain.Services.Authorization
 {
-    public class AuthorizationHolder : IAuthorizationHolder
+    public class AuthorizationHolder : IAuthorizationHolder, IAuthorizationUpdater, IHubAuthorizationProvider
     {
         private readonly IPreferencesStorage _storage;
 
@@ -22,5 +24,8 @@ namespace RemoteNotes.Domain.Services.Authorization
 
         public void SaveSession(TokenModel session)
             => _storage.Put(StorageKeys.TokenModel, session);
+
+        public Task<string> GetTokenAsync()
+            => Task.FromResult(GetLastSession()?.Token);
     }
 }

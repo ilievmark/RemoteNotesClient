@@ -9,10 +9,8 @@ namespace RemoteNotes.Service.Domain.Hub
 {
     public class Hub : IHubConnection, IHubMessager, IHubObservable
     {
-        private readonly IHubAuthorizationProvider _authorizationProvider;
         private readonly string _hubUrl;
-        
-        private HubConnection _hubConnection;
+        private readonly HubConnection _hubConnection;
 
         public event Action ConnectionStatusChanged = delegate { };
         
@@ -22,16 +20,15 @@ namespace RemoteNotes.Service.Domain.Hub
             IHubAuthorizationProvider authorizationProvider,
             string hubUrl)
         {
-            _authorizationProvider = authorizationProvider;
             _hubUrl = hubUrl;
+            _hubConnection = new HubConnectionBuilder()
+                .WithUrl(hubUrl, options => options.AccessTokenProvider = authorizationProvider.GetTokenAsync)
+                .Build();
         }
         
         public async Task ConnectAsync()
         {
             await DisconnectAsync();
-            _hubConnection = new HubConnectionBuilder()
-                .WithUrl(_hubUrl, options => options.AccessTokenProvider = _authorizationProvider.GetTokenAsync)
-                .Build();
             _hubConnection.Closed += OnClosedAsync;
             _hubConnection.Reconnecting += OnReconectingAsync;
             _hubConnection.Reconnected += OnReconectedAsync;
@@ -40,14 +37,12 @@ namespace RemoteNotes.Service.Domain.Hub
 
         public async Task DisconnectAsync()
         {
-            if (_hubConnection != null)
+            if (IsConnected)
             {
                 _hubConnection.Closed -= OnClosedAsync;
                 _hubConnection.Reconnecting -= OnReconectingAsync;
                 _hubConnection.Reconnected -= OnReconectedAsync;
                 await _hubConnection.StopAsync();
-                await _hubConnection.DisposeAsync();
-                _hubConnection = null;
             }
         }
 

@@ -87,7 +87,7 @@
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="AppDelegate\BaseAppDelegate.cs" />
+        <Compile Include="Delegate\BaseAppDelegate.cs" />
         <Compile Include="Main.cs" />
         <Compile Include="AppDelegate.cs" />
         <Compile Include="Renderers\Pages\BaseContentPageRenderer.cs" />
@@ -108,9 +108,24 @@
         <Reference Include="Xamarin.iOS" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
+        <PackageReference Include="Xam.Plugin.DeviceInfo">
+          <Version>4.1.1</Version>
+        </PackageReference>
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Contract\RemoteNotes.Domain.Contract.csproj">
+          <Project>{6e03d8ca-7895-49d1-b675-3cec73fca3ea}</Project>
+          <Name>RemoteNotes.Domain.Contract</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Services\RemoteNotes.Domain.Services.csproj">
+          <Project>{a5c8838b-5609-4621-aaee-0fed842725bd}</Project>
+          <Name>RemoteNotes.Domain.Services</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\UI\RemoteNotes.UI.Control\RemoteNotes.UI.Control.csproj">
+          <Project>{bbc84bc1-03cf-4609-ba89-4ca676dc6180}</Project>
+          <Name>RemoteNotes.UI.Control</Name>
+        </ProjectReference>
         <ProjectReference Include="..\..\UI\RemoteNotes.UI.Shell\RemoteNotes.UI.Shell.csproj">
           <Project>{948d2b0b-a43e-4156-acdd-577d8303336f}</Project>
           <Name>RemoteNotes.UI.Shell</Name>

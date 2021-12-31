@@ -1,10 +1,14 @@
+using Acr.UserDialogs;
 using Autofac;
-using RemoteNotes.UI.Control;
-using RemoteNotes.UI.Shell.Navigation;
-using RemoteNotes.UI.ViewModel;
-using RemoteNotes.UI.ViewModel.Service;
+using RemoteNotes.Domain.Contract.Navigation;
+using RemoteNotes.Domain.Core.Attributes;
+using RemoteNotes.Domain.Services.Navigation;
+using RemoteNotes.Domain.Services.Navigation.Holders;
+using RemoteNotes.Domain.Services.Navigation.Performers;
+using RemoteNotes.Domain.Services.NavigationBuilders;
+using RemoteNotes.Domain.Services.NavigationBuilders.Registrators;
+using RemoteNotes.Domain.Services.ViewModel;
 using Xamarin.Forms;
-using PageKeys = RemoteNotes.UI.ViewModel.PageKeys;
 
 namespace RemoteNotes.UI.Shell.Module
 {
@@ -12,13 +16,48 @@ namespace RemoteNotes.UI.Shell.Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<NavigationController>().As<INavigationController>();
+            RegisterPages(builder);
+            RegisterViewModels(builder);
+
+            builder.RegisterType<NavigatedPerformer>().As<INavigationPerformer>();
+            builder.RegisterType<NavigatingPerformer>().As<INavigationPerformer>();
+            builder.RegisterType<NavigatedFromPerformer>().As<INavigationPerformer>();
+            builder.RegisterType<NavigatingFromPerformer>().As<INavigationPerformer>();
+            builder.RegisterType<NavigatedBackPerformer>().As<INavigationPerformer>();
+            builder.RegisterType<NavigatingBackPerformer>().As<INavigationPerformer>();
+
+            builder.RegisterType<CompositeNavigationPerformer>().As<ICompositeNavigationPerformer>();
             
-            builder.RegisterType<LoginPage>().Named<ContentPage>(PageKeys.Login);
-            builder.RegisterType<LoginPageViewModel>();
+            builder.RegisterType<PageBuilder>().As<IPageBuilder>();
+            builder.RegisterType<ViewModelBuilder>().As<IViewModelBuilder>();
             
-            builder.RegisterType<DashboardPage>().Named<ContentPage>(PageKeys.Dashboard);
-            builder.RegisterType<DashboardPageViewModel>();
+            builder.Register(c => UserDialogs.Instance).As<IUserDialogs>().InstancePerLifetimeScope();
+            builder.RegisterType<NavigationService>().As<INavigationService>().InstancePerLifetimeScope();
+            builder.RegisterDecorator<AuthorizedNavigationServiceDecorator, INavigationService>();
+
+            builder.RegisterType<NavigationPage>().Named<Page>("nav").InstancePerRequest();
+        }
+
+        private void RegisterPages(ContainerBuilder builder)
+        {
+            var typesProvider = new RegisteredNavigationTypesProvider();
+            var typeRegistrations = typesProvider.GetRegistrations<PageRegistrattionAttribute>("RemoteNotes.UI.Control");
+
+            foreach (var typeRegistration in typeRegistrations)
+                builder.RegisterType(typeRegistration.Type).Named<Page>(typeRegistration.Tag).ExternallyOwned();
+
+            builder.Register(c => new PageNavigationTypeHolder(typeRegistrations));
+        }
+
+        private void RegisterViewModels(ContainerBuilder builder)
+        {
+            var typesProvider = new RegisteredNavigationTypesProvider();
+            var typeRegistrations = typesProvider.GetRegistrations<ViewModelRegistrationAttribute>("RemoteNotes.UI.ViewModel");
+
+            foreach (var typeRegistration in typeRegistrations)
+                builder.RegisterType(typeRegistration.Type).Named<BaseViewModel>(typeRegistration.Tag).ExternallyOwned();
+
+            builder.Register(c => new ViewModelNavigationTypeHolder(typeRegistrations));
         }
     }
 }
