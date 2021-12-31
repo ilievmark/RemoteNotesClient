@@ -1,5 +1,5 @@
 ﻿using System;
-namespace RemoteNotes.Domain.Core.Exceptions
+namespace RemoteNotes.Domain.Exceptions
 {
     public class NoInternetException : Exception
     {
