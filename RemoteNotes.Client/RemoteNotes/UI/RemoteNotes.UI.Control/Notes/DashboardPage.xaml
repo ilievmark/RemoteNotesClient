@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<control:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                  x:Class="RemoteNotes.UI.Control.DashboardPage"
-                  xmlns:control="clr-namespace:RemoteNotes.UI.Control;assembly=RemoteNotes.UI.Control"
-                  xmlns:vm="clr-namespace:RemoteNotes.UI.ViewModel;assembly=RemoteNotes.UI.ViewModel"
-                  xmlns:m="clr-namespace:RemoteNotes.UI.ViewModel.Model;assembly=RemoteNotes.UI.ViewModel"
-                  x:TypeArguments="vm:DashboardPageViewModel"
-                  x:DataType="vm:DashboardPageViewModel"
-                  Title="{Binding Title}">
+
+<pages:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:RemoteNotes.UI.Control.Pages;assembly=RemoteNotes.UI.Control"
+    x:Class="RemoteNotes.UI.Control.Notes.DashboardPage"
+    xmlns:vm="clr-namespace:RemoteNotes.UI.ViewModel.Notes;assembly=RemoteNotes.UI.ViewModel"
+    xmlns:models="clr-namespace:RemoteNotes.Domain.Models;assembly=RemoteNotes.Domain"
+    x:DataType="vm:DashboardPageViewModel"
+    Title="{Binding Title}">
     
     <Grid>
         
@@ -23,7 +24,7 @@
             
             <CollectionView ItemsSource="{Binding Items}">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="m:NoteViewModel">
+                    <DataTemplate x:DataType="models:NoteModel">
                         
                         <Grid RowDefinitions=".65*, .35*"
                               Margin="15">
@@ -52,4 +53,4 @@
         
     </Grid>
     
-</control:BasePage>
+</pages:BaseContentPage>
