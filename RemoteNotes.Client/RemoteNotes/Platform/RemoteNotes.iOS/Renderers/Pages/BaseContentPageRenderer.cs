@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using Core.Enums;
-using Core.Pages;
 using Foundation;
 using Plugin.DeviceInfo;
+using RemoteNotes.UI.Control.Enums;
+using RemoteNotes.UI.Control.Pages;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;

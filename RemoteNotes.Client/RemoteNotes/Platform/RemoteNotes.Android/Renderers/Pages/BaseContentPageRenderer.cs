@@ -6,6 +6,8 @@ using Android.Views;
 using Core.Enums;
 using Core.Pages;
 using Plugin.CurrentActivity;
+using RemoteNotes.UI.Control.Enums;
+using RemoteNotes.UI.Control.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -52,10 +54,10 @@ namespace RemoteNotes.Android.Renderers.Pages
 
         protected virtual void UpdateStatusBar()
         {
-
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.R)
-                SetupNewCompat();
-            else
+            // Now is no R version
+            //if (Build.VERSION.SdkInt >= BuildVersionCodes.R)
+            //    SetupNewCompat();
+            //else
                 SetupOldCompat();
         }
 
