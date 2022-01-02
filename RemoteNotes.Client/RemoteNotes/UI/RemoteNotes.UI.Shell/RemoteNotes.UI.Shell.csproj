@@ -2,8 +2,16 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
+        <Configurations>Debug;Release;DebugMock</Configurations>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugMock|AnyCPU' ">
+      <IntermediateOutputPath>obj\DebugMock</IntermediateOutputPath>
+      <DebugSymbols>true</DebugSymbols>
+      <Optimize>false</Optimize>
+      <OutputPath>bin\DebugMock</OutputPath>
+      <DefineConstants>TRACE;DEBUG;NETSTANDARD;NETSTANDARD2_1;MOCK</DefineConstants>
+    </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Autofac" Version="6.3.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
@@ -21,10 +29,12 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\RemoteNotes.Service\RemoteNotes.Service.Domain\RemoteNotes.Service.Domain.csproj" />
       <ProjectReference Include="..\..\BL\RemoteNotes.API.Contract\RemoteNotes.API.Contract.csproj" />
+      <ProjectReference Include="..\..\BL\RemoteNotes.API.Stub\RemoteNotes.API.Stub.csproj" />
       <ProjectReference Include="..\..\BL\RemoteNotes.API\RemoteNotes.API.csproj" />
       <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Contract\RemoteNotes.Domain.Contract.csproj" />
       <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Services\RemoteNotes.Domain.Services.csproj" />
       <ProjectReference Include="..\..\Service\RemoteNotes.Service.Client.Contract\RemoteNotes.Service.Client.Contract.csproj" />
+      <ProjectReference Include="..\..\Service\RemoteNotes.Service.Domain.Stub\RemoteNotes.Service.Domain.Stub.csproj" />
       <ProjectReference Include="..\..\Service\RemoteNotes.Service.Domain\RemoteNotes.Service.Domain.csproj" />
       <ProjectReference Include="..\RemoteNotes.UI.Control\RemoteNotes.UI.Control.csproj" />
       <ProjectReference Include="..\RemoteNotes.UI.ViewModel\RemoteNotes.UI.ViewModel.csproj" />
