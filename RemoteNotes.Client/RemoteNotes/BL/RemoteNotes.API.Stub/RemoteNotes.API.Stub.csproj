@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\RemoteNotes.API.Contract\RemoteNotes.API.Contract.csproj" />
+    </ItemGroup>
+
+</Project>

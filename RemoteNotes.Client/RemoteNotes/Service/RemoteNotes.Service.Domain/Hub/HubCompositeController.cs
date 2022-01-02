@@ -11,7 +11,7 @@ namespace RemoteNotes.Service.Domain.Hub
         public HubCompositeController(
             params IHubController[] hubControllers)
         {
-            _hubControllers = hubControllers;
+            _hubControllers = hubControllers ?? new IHubController[] {};
         }
         
         public Task StartAsync()

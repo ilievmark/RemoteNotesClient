@@ -4,7 +4,12 @@ using RemoteNotes.Service.Client.Contract.Hub;
 using RemoteNotes.Service.Client.Contract.Notes;
 using RemoteNotes.Service.Domain;
 using RemoteNotes.Service.Domain.Hub;
+
+#if MOCK
+using RemoteNotes.Service.Domain.Stub.Notes;
+#else
 using RemoteNotes.Service.Domain.Notes;
+#endif
 
 namespace RemoteNotes.UI.Shell.Module
 {
@@ -31,6 +36,13 @@ namespace RemoteNotes.UI.Shell.Module
                         c.ResolveNamed<IHubController>(Hubs.Notes)))
                    .As<IHubController>()
                    .SingleInstance();
+            
+#if MOCK
+            builder.Register(
+                    c => new HubCompositeController())
+                .As<IHubController>()
+                .SingleInstance();
+#endif
             
             builder.RegisterType<NotesHub>().SingleInstance()
                    .As<INotesHub>().As<IHubObserver>()

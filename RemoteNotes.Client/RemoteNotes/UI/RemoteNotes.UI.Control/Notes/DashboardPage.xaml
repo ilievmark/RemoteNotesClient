@@ -31,11 +31,11 @@
                             
                             <Label Grid.Row="0"
                                    FontSize="20"
-                                   Text="{Binding Title}" />
+                                   Text="{Binding Topic}" />
                             
                             <Label Grid.Row="1"
                                    FontSize="14"
-                                   Text="{Binding Description}" />
+                                   Text="{Binding Text}" />
                             
                             <BoxView Grid.RowSpan="2"
                                      BackgroundColor="Black"
