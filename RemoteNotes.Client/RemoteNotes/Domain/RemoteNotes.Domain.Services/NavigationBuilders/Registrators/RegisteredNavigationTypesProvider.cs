@@ -21,8 +21,9 @@ namespace RemoteNotes.Domain.Services.NavigationBuilders.Registrators
             foreach (var type in navigationTypes)
             {
                 var attributes = type.GetCustomAttributes(typeof(TAttribute), false);
-                var attribute = attributes.First() as TAttribute;
-                yield return new NavigationTypeRegistration(type, attribute.NavigationTag);
+                foreach (var attribute in attributes)
+                    if (attribute is TAttribute casted)
+                        yield return new NavigationTypeRegistration(type, casted.NavigationTag);
             }
         }
     }

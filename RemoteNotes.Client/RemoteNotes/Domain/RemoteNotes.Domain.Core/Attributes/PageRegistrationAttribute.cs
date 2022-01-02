@@ -3,7 +3,7 @@
 namespace RemoteNotes.Domain.Core.Attributes
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
-    public class ViewModelRegistrationAttribute : NavigationAttribute
+    public class PageRegistrationAttribute : NavigationAttribute
     {
     }
 }
