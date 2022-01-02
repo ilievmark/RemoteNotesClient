@@ -1,7 +1,12 @@
 using System.Net.Http;
 using Autofac;
-using RemoteNotes.API;
 using RemoteNotes.API.Contract;
+
+#if MOCK
+using RemoteNotes.API.Stub;
+#else
+using RemoteNotes.API;
+#endif
 
 namespace RemoteNotes.UI.Shell.Module
 {
