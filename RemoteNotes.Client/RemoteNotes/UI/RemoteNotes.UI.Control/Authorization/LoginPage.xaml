@@ -9,27 +9,38 @@
        x:DataType="vm:LoginViewModel"
        Title="{Binding Title}">
     
-    <Grid Padding="20"
-          VerticalOptions="Center"
-          ColumnDefinitions=".5*, .5*"
-          RowDefinitions=".3*, .3*, .3*, 40, 40">
+    <ScrollView>
         
-        <Entry Grid.Row="0" Grid.ColumnSpan="2"
-               Text="{Binding Login}"
-               Placeholder="Login"/>
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     Padding="10">
         
-        <Entry Grid.Row="1" Grid.ColumnSpan="2"
-               Text="{Binding Password}"
-               Placeholder="Password"/>
+            <Frame Grid.Row="0"
+                   BackgroundColor="#999999"
+                   CornerRadius="8">
+            
+                <StackLayout Margin="10">
+                
+                    <Entry Text="{Binding Login}"
+                           Placeholder="Login"/>
         
-        <Button Grid.Row="3" Grid.Column="0"
-                Command="{Binding LoginCommand}"
-                Text="Login"/>
+                    <Entry Text="{Binding Password}"
+                           Placeholder="Password"
+                           IsPassword="True"/>
+                
+                </StackLayout>
+            
+            </Frame>
         
-        <Button Grid.Row="4" Grid.Column="0"
-                Command="{Binding ToSignUpCommand}"
-                Text="Has no account?"/>
+            <Button Grid.Row="3"
+                    Command="{Binding LoginCommand}"
+                    Text="Login"/>
         
-    </Grid>
+            <Button Grid.Row="4"
+                    Command="{Binding ToSignUpCommand}"
+                    Text="Has no account?"/>
+        
+        </StackLayout>
+        
+    </ScrollView>
        
 </pages:BaseContentPage>
