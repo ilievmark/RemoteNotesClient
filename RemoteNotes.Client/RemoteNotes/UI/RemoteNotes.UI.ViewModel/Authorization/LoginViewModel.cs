@@ -51,7 +51,7 @@ namespace RemoteNotes.UI.ViewModel.Authorization
 
         private Task OnToSignUpCommand()
         {
-            return NavigationService.NavigateNextAsync(PageTagConstants.SignUp, CancellationToken.None);
+            return NavigationService.NavigateWithReplaceAsync(PageTagConstants.SignUp, CancellationToken.None);
         }
 
         private async Task OnLoginCommand()
