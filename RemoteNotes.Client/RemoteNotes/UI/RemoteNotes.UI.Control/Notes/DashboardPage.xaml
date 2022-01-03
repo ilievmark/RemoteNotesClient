@@ -6,51 +6,66 @@
     xmlns:pages="clr-namespace:RemoteNotes.UI.Control.Pages;assembly=RemoteNotes.UI.Control"
     x:Class="RemoteNotes.UI.Control.Notes.DashboardPage"
     xmlns:vm="clr-namespace:RemoteNotes.UI.ViewModel.Notes;assembly=RemoteNotes.UI.ViewModel"
-    xmlns:models="clr-namespace:RemoteNotes.Domain.Models;assembly=RemoteNotes.Domain"
     x:DataType="vm:DashboardPageViewModel"
+    x:Name="this"
     Title="{Binding Title}">
     
-    <Grid>
-        
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        
-        <RefreshView Grid.Row="1"
-                     Margin="15"
-                     IsRefreshing="{Binding IsRefreshing}"
+    <Page.ToolbarItems>
+        <ToolbarItem Text="New" Command="{Binding CreateNoteCommand}"/>
+    </Page.ToolbarItems>
+    
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding RefreshCommand}">
             
             <CollectionView ItemsSource="{Binding Items}">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:NoteModel">
+                    <DataTemplate x:DataType="vm:NoteViewModel">
                         
-                        <Grid RowDefinitions=".65*, .35*"
-                              Margin="15">
+                        <SwipeView>
                             
-                            <Label Grid.Row="0"
-                                   FontSize="20"
-                                   Text="{Binding Topic}" />
+                            <SwipeView.RightItems>
+
+                                <SwipeItem Text="Edit"
+                                           BackgroundColor="LightYellow"
+                                           Command="{Binding BindingContext.EditNoteCommand, Source={x:Reference this}}"
+                                           CommandParameter="{Binding .}"/>
+
+                            </SwipeView.RightItems>
                             
-                            <Label Grid.Row="1"
-                                   FontSize="14"
-                                   Text="{Binding Text}" />
+                            <SwipeView.LeftItems>
+                                
+                                <SwipeItem Text="Delete"
+                                           BackgroundColor="Red"
+                                           Command="{Binding BindingContext.DeleteNoteCommand, Source={x:Reference this}}"
+                                           CommandParameter="{Binding .}"/>
+
+                            </SwipeView.LeftItems>
                             
-                            <BoxView Grid.RowSpan="2"
-                                     BackgroundColor="Black"
-                                     HeightRequest="1"
-                                     VerticalOptions="End"
-                                     Margin="20, 0"/>
+                            <Frame BackgroundColor="#AAAAAA"
+                                   CornerRadius="8"
+                                   Margin="15">
+                                
+                                <Grid RowDefinitions="30, *"
+                                      Margin="10">
+                                
+                                    <Label Grid.Row="0"
+                                           FontSize="20"
+                                           Text="{Binding Topic}" />
+                                
+                                    <Label Grid.Row="1"
+                                           FontSize="14"
+                                           Text="{Binding Text}" />
+                                
+                                </Grid>
+                                
+                            </Frame>
                             
-                        </Grid>
+                        </SwipeView>
                         
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
             
         </RefreshView>
-        
-    </Grid>
     
 </pages:BaseContentPage>
