@@ -15,7 +15,7 @@ using RemoteNotes.UI.ViewModel.Tool;
 
 namespace RemoteNotes.UI.ViewModel.Authorization
 {
-    [ViewModelRegistration(NavigationTag = PageTagConstants.Login)]
+    [ViewModelRegistration(NavigationTag = PageTags.Login)]
     public class LoginViewModel : BaseNavigationViewModel
     {
         private readonly IAuthorizationService _authorizationService;
@@ -51,7 +51,7 @@ namespace RemoteNotes.UI.ViewModel.Authorization
 
         private Task OnToSignUpCommand()
         {
-            return NavigationService.NavigateWithReplaceAsync(PageTagConstants.SignUp, CancellationToken.None);
+            return NavigationService.NavigateWithReplaceAsync(PageTags.SignUp, CancellationToken.None);
         }
 
         private async Task OnLoginCommand()
@@ -82,7 +82,7 @@ namespace RemoteNotes.UI.ViewModel.Authorization
             await _authorizationService.SignInAsync(login, password, CancellationToken.None);
 
             if (_authorizationService.IsAuthorized)
-                await NavigationService.NavigateWithReplaceAsync(PageTagConstants.Dashboard, CancellationToken.None);
+                await NavigationService.NavigateWithReplaceAsync(PageTags.Dashboard, CancellationToken.None);
             else await ShowAlertAsync("Cant login with given credentials.");
         }
     }

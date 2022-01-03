@@ -4,8 +4,8 @@ using Xamarin.Forms.Xaml;
 
 namespace RemoteNotes.UI.Control.Notes
 {
-    [AuthorizedNavigation(AlternativePageTag = PageTagConstants.Login)]
-    [PageRegistrattion(NavigationTag = PageTagConstants.Dashboard)]
+    [AuthorizedNavigation(AlternativePageTag = PageTags.Login)]
+    [PageRegistration(NavigationTag = PageTags.Dashboard)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DashboardPage
     {

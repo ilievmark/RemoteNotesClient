@@ -56,7 +56,7 @@ namespace RemoteNotes.UI.Shell
 
         public override Task SetupNavigationAsync(INavigationService navigationService)
         {
-            return navigationService.NavigateWithReplaceAsync(PageTagConstants.Dashboard, _appCancellationTokenSource.Token);
+            return navigationService.NavigateWithReplaceAsync(PageTags.Dashboard, _appCancellationTokenSource.Token);
         }
     }
 }
