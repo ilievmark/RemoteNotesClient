@@ -4,6 +4,7 @@ using RemoteNotes.API.Contract;
 using RemoteNotes.Domain;
 using RemoteNotes.Domain.Contract.Authorization;
 using RemoteNotes.Domain.Core.Constants;
+using RemoteNotes.Domain.Endpoints;
 using RemoteNotes.Domain.Extensions;
 using RemoteNotes.Domain.Requests;
 using RemoteNotes.Domain.Response;
@@ -26,7 +27,7 @@ namespace RemoteNotes.API
         public Task<ApiResponse<AuthorizationResponse>> SignInAsync(SignInRequest request)
             => _httpClient
                 .CreateRequest()
-                .ByResource(ProjectConstants.BaseUrl, "/signIn")
+                .ByResource(ProjectConstants.BaseUrl, $"/{AuthorizationApis.SignIn}")
                 .WithMethod(HttpMethod.Post)
                 .WithContent(request)
                 .MakeRequestAsync()
@@ -35,7 +36,7 @@ namespace RemoteNotes.API
         public Task<ApiResponse<AuthorizationResponse>> SignUpAsync(SignUpRequest request)
             => _httpClient
                 .CreateRequest()
-                .ByResource(ProjectConstants.BaseUrl, "/signUp")
+                .ByResource(ProjectConstants.BaseUrl, $"/{AuthorizationApis.SignUp}")
                 .WithMethod(HttpMethod.Post)
                 .WithContent(request)
                 .MakeRequestAsync()
@@ -44,7 +45,7 @@ namespace RemoteNotes.API
         public Task<ApiResponse<AuthorizationResponse>> UpdateAuthorizationAsync()
             => _httpClient
                 .CreateRequest()
-                .ByResource(ProjectConstants.BaseUrl, "/update")
+                .ByResource(ProjectConstants.BaseUrl, $"/{AuthorizationApis.RefreshToten}")
                 .WithMethod(HttpMethod.Post)
                 .WithAuthorization(AuthTypes.Bearer, _authorizationHolder.GetLastSession().Token)
                 .MakeRequestAsync()

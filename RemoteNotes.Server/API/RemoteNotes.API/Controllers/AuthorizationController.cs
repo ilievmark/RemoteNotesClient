@@ -1,7 +1,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RemoteNotes.BL.Security.UserToken;
 using RemoteNotes.Domain;
+using RemoteNotes.Domain.Endpoints;
 using RemoteNotes.Domain.Requests;
 using RemoteNotes.Domain.Response;
 
@@ -12,47 +14,45 @@ namespace RemoteNotes.API.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthorizationController : BaseApiController
+    public class AuthorizationController : BaseAuthorizedApiController
     {
         private readonly IAuthorizationService _authorizationService;
 
-        protected string Token => Request.Headers["Authorization"];
-        
         public AuthorizationController(IAuthorizationService authorizationService)
         {
             _authorizationService = authorizationService;
         }
         
-        [HttpPost, Route("logIn")]
-        public async Task<ActionResult> LogInAsync([FromBody] LoginRequest request)
+        [HttpPost, Route(AuthorizationApis.SignIn)]
+        public async Task<ActionResult> LogInAsync([FromBody] SignInRequest request)
         {
             var serverResult = new ApiResponse<AuthorizationResponse>();
-            var tokenData = await _authorizationService.LogInAsync(request.Login, request.Password);
+            var tokenData = await _authorizationService.LogInAsync(request.Username, request.Password);
 
-            serverResult.SetSuccess(new AuthorizationResponse(tokenData));
+            serverResult.SetSuccess(new AuthorizationResponse {TokenModel = tokenData});
 
             return Ok(serverResult);
         }
         
-        [HttpPost, Route("signUp")]
+        [HttpPost, Route(AuthorizationApis.SignUp)]
         public async Task<ActionResult> SignUpAsync([FromBody] SignUpRequest request)
         {
             var serverResult = new ApiResponse<AuthorizationResponse>();
             var tokenData = await _authorizationService.SignUpAsync(request.Username, request.Password);
 
-            serverResult.SetSuccess(new AuthorizationResponse(tokenData));
+            serverResult.SetSuccess(new AuthorizationResponse {TokenModel = tokenData});
 
             return Ok(serverResult);
         }
         
         [Authorize]
-        [HttpPost, Route("refresh")]
+        [HttpPost, Route(AuthorizationApis.RefreshToten)]
         public async Task<ActionResult> RefreshAsync()
         {
             var serverResult = new ApiResponse<AuthorizationResponse>();
             var tokenData = await _authorizationService.RefreshTokenAsync(Token);
 
-            serverResult.SetSuccess(new AuthorizationResponse(tokenData));
+            serverResult.SetSuccess(new AuthorizationResponse {TokenModel = tokenData});
 
             return Ok(serverResult);
         }
