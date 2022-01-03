@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using RemoteNotes.Domain.Hubs;
 using RemoteNotes.Domain.Models;
@@ -12,9 +13,9 @@ namespace RemoteNotes.Service.Domain.Stub.Notes
     {
         private readonly IHubMessager _hubMessager;
         private IList<NoteModel> _notesStorage;
-        
-        public event Action<IEnumerable<NoteModel>> NotesUpdated = delegate { };
 
+        public event Action<NoteChange, NoteModel> NoteStorageUpdate = delegate {};
+        
         public string HubName => Hubs.Notes;
 
         public string MessageTag => NotesHubMessages.NotesUpdated;
@@ -50,11 +51,30 @@ namespace RemoteNotes.Service.Domain.Stub.Notes
             return _notesStorage;
         }
 
+        public async Task DeleteNoteAsync(NoteModel note)
+        {
+            await Task.Delay(2000);
+            var oldNote = _notesStorage.FirstOrDefault(n => n.Id == note.Id);
+            var index = _notesStorage.IndexOf(oldNote);
+            _notesStorage.RemoveAt(index);
+            NoteStorageUpdate(NoteChange.Deleted, note);
+        }
+
+        public async Task UpdateNoteAsync(NoteModel note)
+        {
+            await Task.Delay(2000);
+            var oldNote = _notesStorage.FirstOrDefault(n => n.Id == note.Id);
+            var index = _notesStorage.IndexOf(oldNote);
+            _notesStorage[index] = note;
+            NoteStorageUpdate(NoteChange.Updated, note);
+        }
+
         public async Task PutNoteAsync(NoteModel note)
         {
             await Task.Delay(2000);
+            note.Id = _notesStorage.Last().Id + 1;
             _notesStorage.Add(note);
-            NotesUpdated(_notesStorage);
+            NoteStorageUpdate(NoteChange.Added, note);
         }
 
         public Task HandleMessageAsync(string json)
