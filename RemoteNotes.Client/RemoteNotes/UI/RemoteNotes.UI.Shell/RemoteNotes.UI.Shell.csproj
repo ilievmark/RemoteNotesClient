@@ -2,14 +2,14 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <Configurations>Debug;Release;DebugMock</Configurations>
+        <Configurations>DebugMock;Debug;Release</Configurations>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugMock|AnyCPU' ">
-      <IntermediateOutputPath>obj\DebugMock</IntermediateOutputPath>
+      <IntermediateOutputPath>obj\DebugMock\netstandard2.1</IntermediateOutputPath>
       <DebugSymbols>true</DebugSymbols>
       <Optimize>false</Optimize>
-      <OutputPath>bin\DebugMock</OutputPath>
+      <OutputPath>bin\DebugMock\netstandard2.1</OutputPath>
       <DefineConstants>TRACE;DEBUG;NETSTANDARD;NETSTANDARD2_1;MOCK</DefineConstants>
     </PropertyGroup>
     <ItemGroup>
@@ -17,6 +17,7 @@
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
+        <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
     </ItemGroup>
 
     <ItemGroup>
@@ -41,5 +42,8 @@
       <ProjectReference Include="..\..\..\..\RemoteNotes.Core\RemoteNotes.Rules\RemoteNotes.Rules.csproj" />
       <ProjectReference Include="..\..\..\..\RemoteNotes.Core\RemoteNotes.Rules.Contract\RemoteNotes.Rules.Contract.csproj" />
       <ProjectReference Include="..\..\..\..\RemoteNotes.Core\RemoteNotes.Domain\RemoteNotes.Domain.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Xam.Plugin.Media" />
     </ItemGroup>
 </Project>

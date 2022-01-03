@@ -6,10 +6,17 @@
 
     <ItemGroup>
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
+        <PackageReference Include="Basil.Behaviors" Version="1.2.0.1" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Contract\RemoteNotes.Domain.Contract.csproj" />
       <ProjectReference Include="..\RemoteNotes.UI.ViewModel\RemoteNotes.UI.ViewModel.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Basil.Behaviors" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Controls" />
     </ItemGroup>
 </Project>
