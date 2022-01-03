@@ -41,7 +41,7 @@ namespace RemoteNotes.UI.Shell.Module
         private void RegisterPages(ContainerBuilder builder)
         {
             var typesProvider = new RegisteredNavigationTypesProvider();
-            var typeRegistrations = typesProvider.GetRegistrations<PageRegistrattionAttribute>("RemoteNotes.UI.Control");
+            var typeRegistrations = typesProvider.GetRegistrations<PageRegistrationAttribute>("RemoteNotes.UI.Control");
 
             foreach (var typeRegistration in typeRegistrations)
                 builder.RegisterType(typeRegistration.Type).Named<Page>(typeRegistration.Tag).ExternallyOwned();

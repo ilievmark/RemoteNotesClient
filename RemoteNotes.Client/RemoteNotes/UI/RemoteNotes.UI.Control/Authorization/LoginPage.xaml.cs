@@ -4,7 +4,7 @@ using Xamarin.Forms.Xaml;
 
 namespace RemoteNotes.UI.Control.Authorization
 {
-    [PageRegistrattion(NavigationTag = PageTagConstants.Login)]
+    [PageRegistration(NavigationTag = PageTags.Login)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage
     {

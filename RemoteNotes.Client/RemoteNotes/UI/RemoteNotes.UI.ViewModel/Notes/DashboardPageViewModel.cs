@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -11,6 +13,7 @@ using RemoteNotes.Domain.Contract.ViewModel;
 using RemoteNotes.Domain.Core.Attributes;
 using RemoteNotes.Domain.Core.Constants;
 using RemoteNotes.Domain.Core.Navigation;
+using RemoteNotes.Domain.Hubs;
 using RemoteNotes.Domain.Models;
 using RemoteNotes.Domain.Services.ViewModel;
 using RemoteNotes.Service.Client.Contract.Notes;
@@ -18,8 +21,8 @@ using RemoteNotes.UI.ViewModel.Tool;
 
 namespace RemoteNotes.UI.ViewModel.Notes
 {
-    [ViewModelRegistration(NavigationTag = PageTagConstants.Login)]
-    public class DashboardPageViewModel : BaseNavigationViewModel, INavigated
+    [ViewModelRegistration(NavigationTag = PageTags.Dashboard)]
+    public class DashboardPageViewModel : BaseNavigationViewModel, INavigated, IDisposable
     {
         private readonly INotesHub _notesHub;
 
@@ -34,8 +37,8 @@ namespace RemoteNotes.UI.ViewModel.Notes
             Title = "Notes";
         }
         
-        private ObservableCollection<NoteModel> _items = new ObservableCollection<NoteModel>();
-        public ObservableCollection<NoteModel> Items
+        private ObservableCollection<NoteViewModel> _items = new ObservableCollection<NoteViewModel>();
+        public ObservableCollection<NoteViewModel> Items
         {
             get => _items;
             set => SetProperty(ref _items, value);
@@ -49,6 +52,29 @@ namespace RemoteNotes.UI.ViewModel.Notes
         }
         
         public ICommand RefreshCommand => new AsyncCommand(() => CommandExecutionHolderMethodAsync(OnRefreshCommand));
+        public ICommand CreateNoteCommand => new AsyncCommand(() => CommandExecutionHolderMethodAsync(OnCreateNoteCommand));
+        public ICommand EditNoteCommand => new AsyncCommand(o => CommandExecutionHolderMethodAsync(OnEditNoteCommand, o));
+        public ICommand DeleteNoteCommand => new AsyncCommand(o => CommandExecutionHolderMethodAsync(OnDeleteNoteCommand, o));
+
+        private async Task OnDeleteNoteCommand(object arg)
+        {
+            using (UserDialogs.Loading())
+            {
+                var note = arg as NoteViewModel;
+                await _notesHub.DeleteNoteAsync(note.Note);
+            }
+        }
+
+        private Task OnEditNoteCommand(object note)
+        {
+            return NavigationService.NavigateNextAsync(PageTags.EditNote, CancellationToken.None,
+                new KeyValuePair<string, object>("Note", note));
+        }
+
+        private Task OnCreateNoteCommand()
+        {
+            return NavigationService.NavigateNextAsync(PageTags.CreateNote, CancellationToken.None);
+        }
 
         private Task OnRefreshCommand() => RefreshItemsAsync();
 
@@ -76,11 +102,40 @@ namespace RemoteNotes.UI.ViewModel.Notes
             => _notesHub.GetNotesAsync();
 
         private void SetItems(IEnumerable<NoteModel> notes)
-            => Items = new ObservableCollection<NoteModel>(notes);
+        {
+            var bindableNotes = notes.Select(n => new NoteViewModel(n));
+            Items = new ObservableCollection<NoteViewModel>(bindableNotes);
+        }
 
         public Task OnNavigatedAsync(NavigationData navigationData, CancellationToken token)
         {
+            _notesHub.NoteStorageUpdate += OnNoteUpdated;
             return RefreshItemsAsync();
+        }
+
+        public void Dispose()
+        {
+            _notesHub.NoteStorageUpdate -= OnNoteUpdated;
+        }
+
+        private void OnNoteUpdated(NoteChange change, NoteModel note)
+        {
+            switch (change)
+            {
+                case NoteChange.Added:
+                    Items.Add(new NoteViewModel(note));
+                    break;
+                case NoteChange.Deleted:
+                    var noteToRemove = Items.FirstOrDefault(n => n.Id == note.Id);
+                    Items.Remove(noteToRemove);
+                    break;
+                case NoteChange.Updated:
+                    var noteToUpdate = Items.FirstOrDefault(n => n.Id == note.Id);
+                    noteToUpdate.Note = note;
+                    break;
+                default:
+                    throw new DataException("Invalid note with id: " + note.Id);
+            }
         }
     }
 }

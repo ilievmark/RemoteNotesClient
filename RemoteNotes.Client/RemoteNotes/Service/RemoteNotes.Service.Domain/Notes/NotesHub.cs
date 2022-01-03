@@ -13,7 +13,7 @@ namespace RemoteNotes.Service.Domain.Notes
     {
         private readonly IHubMessager _hubMessager;
         
-        public event Action<IEnumerable<NoteModel>> NotesUpdated = delegate { };
+        public event Action<NoteChange, NoteModel> NoteStorageUpdate = delegate { };
 
         public string HubName => Hubs.Notes;
 
@@ -29,6 +29,16 @@ namespace RemoteNotes.Service.Domain.Notes
             return _hubMessager.SendMessageAsync<string, IEnumerable<NoteModel>>(NotesHubMessages.GetNotes, null);
         }
 
+        public Task DeleteNoteAsync(NoteModel note)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateNoteAsync(NoteModel note)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task PutNoteAsync(NoteModel note)
         {
             return _hubMessager.SendMessageAsync<NoteModel, string>(NotesHubMessages.PutNote, note);
@@ -36,8 +46,8 @@ namespace RemoteNotes.Service.Domain.Notes
 
         public Task HandleMessageAsync(string json)
         {
-            var notes = json.ParseAsJson<IEnumerable<NoteModel>>();
-            NotesUpdated?.Invoke(notes);
+            var notes = json.ParseAsJson<NoteChangeModel>();
+            NoteStorageUpdate?.Invoke(notes.Change, notes.Model);
             return Task.CompletedTask;
         }
     }

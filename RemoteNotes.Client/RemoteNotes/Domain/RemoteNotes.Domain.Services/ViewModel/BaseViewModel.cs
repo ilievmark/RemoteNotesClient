@@ -23,7 +23,7 @@ namespace RemoteNotes.Domain.Services.ViewModel
             set => SetProperty(ref _title, value);
         }
 
-        protected virtual async Task CommandExecutionHolderMethodAsync(
+        protected async Task CommandExecutionHolderMethodAsync(
             Func<Task> commandDelegate,
             Action beforeMainAction = null,
             Action afterMainAction = null)
@@ -33,6 +33,35 @@ namespace RemoteNotes.Domain.Services.ViewModel
             try
             {
                 await commandDelegate();
+            }
+            catch (AuthorizationException aex)
+            {
+                ShowToast("Your session is expired, pls relogin to continue");
+            }
+            catch (NoInternetException iex)
+            {
+                ShowToast("No internet connection, pls check connection and repeat you request");
+            }
+            catch (Exception ex)
+            {
+                Debugger.Break();
+                throw;
+            }
+
+            afterMainAction?.Invoke();
+        }
+
+        protected async Task CommandExecutionHolderMethodAsync(
+            Func<object, Task> commandDelegate,
+            object param,
+            Action beforeMainAction = null,
+            Action afterMainAction = null)
+        {
+            beforeMainAction?.Invoke();
+
+            try
+            {
+                await commandDelegate(param);
             }
             catch (AuthorizationException aex)
             {

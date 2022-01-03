@@ -5,11 +5,12 @@ using Xamarin.Forms.Xaml;
 namespace RemoteNotes.UI.Control.Notes
 {
     [AuthorizedNavigation(AlternativePageTag = PageTags.Login)]
-    [PageRegistration(NavigationTag = PageTags.Dashboard)]
+    [PageRegistration(NavigationTag = PageTags.CreateNote)]
+    [PageRegistration(NavigationTag = PageTags.EditNote)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DashboardPage
+    public partial class NoteEditorPage
     {
-        public DashboardPage()
+        public NoteEditorPage()
         {
             InitializeComponent();
         }

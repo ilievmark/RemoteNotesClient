@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<pages:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:RemoteNotes.UI.Control.Pages;assembly=RemoteNotes.UI.Control"
+             xmlns:vm="clr-namespace:RemoteNotes.UI.ViewModel.Notes;assembly=RemoteNotes.UI.ViewModel"
+             x:Class="RemoteNotes.UI.Control.Notes.NoteEditorPage"
+             x:DataType="vm:NoteEditViewModelBase">
+    
+    <ScrollView Padding="15">
+        
+        <Grid RowDefinitions="300, 40, 40, 40, 40"
+              RowSpacing="10">
+        
+            <Image Grid.Row="0"
+                   Source="{Binding Photo}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PickImageCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+            
+            <Entry Grid.Row="1"
+                   Text="{Binding Note.Topic}"
+                   Placeholder="Topic"/>
+            
+            <Entry Grid.Row="2"
+                   Text="{Binding Note.Text}"
+                   Placeholder="Text"/>
+            
+            <Button Grid.Row="3"
+                    Text="Save"
+                    Command="{Binding SaveCommand}"/>
+            
+            <Button Grid.Row="4"
+                    Text="Cancel"
+                    Command="{Binding CancelCommand}"/>
+        
+        </Grid>
+        
+    </ScrollView>
+    
+</pages:BaseContentPage>

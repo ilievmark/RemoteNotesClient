@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
+      <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
     </ItemGroup>
 
     <ItemGroup>
@@ -13,5 +14,8 @@
       <ProjectReference Include="..\..\..\..\RemoteNotes.Core\RemoteNotes.Rules.Contract\RemoteNotes.Rules.Contract.csproj" />
       <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Core\RemoteNotes.Domain.Core.csproj" />
       <ProjectReference Include="..\..\Domain\RemoteNotes.Domain.Services\RemoteNotes.Domain.Services.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Xam.Plugin.Media" />
     </ItemGroup>
 </Project>

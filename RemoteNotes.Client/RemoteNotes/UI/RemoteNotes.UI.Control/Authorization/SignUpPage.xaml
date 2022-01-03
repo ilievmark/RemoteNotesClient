@@ -11,26 +11,27 @@
     
     <Grid Padding="20"
           VerticalOptions="Center"
-          ColumnDefinitions=".5*, .5*"
           RowDefinitions=".3*, .3*, .3*, 40, 40">
         
-        <Entry Grid.Row="0" Grid.ColumnSpan="2"
+        <Entry Grid.Row="0"
                Text="{Binding Login}"
                Placeholder="Login"/>
         
-        <Entry Grid.Row="1" Grid.ColumnSpan="2"
+        <Entry Grid.Row="1"
                Text="{Binding Password}"
-               Placeholder="Password"/>
+               Placeholder="Password"
+               IsPassword="True"/>
         
-        <Entry Grid.Row="1" Grid.ColumnSpan="2"
+        <Entry Grid.Row="1"
                Text="{Binding ConfirmPassword}"
-               Placeholder="Password"/>
+               Placeholder="Repeat password"
+               IsPassword="True"/>
         
-        <Button Grid.Row="3" Grid.Column="0"
+        <Button Grid.Row="3"
                 Command="{Binding SignUpCommand}"
                 Text="Sign up"/>
         
-        <Button Grid.Row="4" Grid.Column="0"
+        <Button Grid.Row="4"
                 Command="{Binding ToLoginCommand}"
                 Text="Already has account?"/>
         
