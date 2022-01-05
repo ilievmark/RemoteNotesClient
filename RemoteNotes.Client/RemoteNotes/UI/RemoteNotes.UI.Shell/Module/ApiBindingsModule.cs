@@ -15,8 +15,9 @@ namespace RemoteNotes.UI.Shell.Module
         protected override void Load(ContainerBuilder builder)
         {
             builder.Register(c => new HttpClient()).InstancePerLifetimeScope();
-            
+
             builder.RegisterType<AuthorizationApi>().As<IAuthorizationApi>().InstancePerLifetimeScope();
+            builder.RegisterType<UserApi>().As<IUserApi>().InstancePerLifetimeScope();
         }
     }
 }
