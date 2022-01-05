@@ -7,7 +7,7 @@ using RemoteNotes.Domain.Endpoints;
 using RemoteNotes.Domain.Requests;
 using RemoteNotes.Domain.Response;
 
-using IAuthorizationService = RemoteNotes.BL.Authorization.IAuthorizationService;
+using IAuthorizationService = RemoteNotes.BL.Contract.Authorization.IAuthorizationService;
 
 namespace RemoteNotes.API.Controllers
 {
@@ -18,7 +18,10 @@ namespace RemoteNotes.API.Controllers
     {
         private readonly IAuthorizationService _authorizationService;
 
-        public AuthorizationController(IAuthorizationService authorizationService)
+        public AuthorizationController(
+            IUserTokenService userTokenService,
+            IAuthorizationService authorizationService)
+            : base(userTokenService)
         {
             _authorizationService = authorizationService;
         }
@@ -27,7 +30,7 @@ namespace RemoteNotes.API.Controllers
         public async Task<ActionResult> LogInAsync([FromBody] SignInRequest request)
         {
             var serverResult = new ApiResponse<AuthorizationResponse>();
-            var tokenData = await _authorizationService.LogInAsync(request.Username, request.Password);
+            var tokenData = await _authorizationService.SignInAsync(request.Username, request.Password);
 
             serverResult.SetSuccess(new AuthorizationResponse {TokenModel = tokenData});
 
