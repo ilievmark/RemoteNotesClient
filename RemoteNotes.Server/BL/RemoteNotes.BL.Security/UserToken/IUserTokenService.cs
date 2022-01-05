@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using System.Security.Claims;
-using RemoteNotes.Domain.Entity;
-using RemoteNotes.Domain.Security;
+using RemoteNotes.Domain.Models;
 
 namespace RemoteNotes.BL.Security.UserToken
 {
     public interface IUserTokenService
     {
-        TokenModel CreateToken(User user);
+        TokenModel CreateToken(UserModel user);
 
-        string UserId(IEnumerable<Claim> claims);
+        int UserId(IEnumerable<Claim> claims);
+        
+        string UserName(string token);
 
         TokenModel RefreshToken(string token);
     }

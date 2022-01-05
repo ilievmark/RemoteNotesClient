@@ -1,9 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using RemoteNotes.BL.Security.Token;
 using RemoteNotes.Domain.Entity;
-using RemoteNotes.Domain.Security;
+using RemoteNotes.Domain.Models;
 
 namespace RemoteNotes.BL.Security.UserToken
 {
@@ -22,11 +23,14 @@ namespace RemoteNotes.BL.Security.UserToken
             _tokenService = tokenService;
         }
 
-        public TokenModel CreateToken(User user)
+        public TokenModel CreateToken(UserModel user)
             => _tokenService.CreateToken(UserClaims(user));
 
-        public string UserId(IEnumerable<Claim> claims)
-            => claims.First(x => x.Type == UserIdKey).Value;
+        public int UserId(IEnumerable<Claim> claims)
+            => Convert.ToInt32(claims.First(x => x.Type == UserIdKey).Value);
+
+        public string UserName(string token)
+            => _tokenService.GetClaims(token).First(x => x.Type == UserNameKey).Value;
 
         public TokenModel RefreshToken(string token)
             => _tokenService.RefreshToken(token);
@@ -35,11 +39,11 @@ namespace RemoteNotes.BL.Security.UserToken
 
         #region -- Private methods --
 
-        private IDictionary<string, string> UserClaims(User user)
+        private IDictionary<string, string> UserClaims(UserModel user)
             => new Dictionary<string, string>
             {
                 { UserIdKey, user.Id.ToString() },
-                { UserNameKey, user.Username }
+                { UserNameKey, user.UserName }
             };
 
         #endregion
