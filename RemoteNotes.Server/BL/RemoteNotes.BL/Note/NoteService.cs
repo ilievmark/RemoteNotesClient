@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RemoteNotes.BL.Contract.Note;
 using RemoteNotes.DAL.Contract;
 
 namespace RemoteNotes.BL.Note
@@ -14,7 +14,7 @@ namespace RemoteNotes.BL.Note
             _noteRepository = noteRepository;
         }
 
-        public Task<List<Domain.Entity.Note>> GetNotesAsync(Guid userId)
+        public Task<List<Domain.Entity.Note>> GetNotesAsync(int userId)
             => _noteRepository.GetByUserIdAsync(userId);
     }
 }

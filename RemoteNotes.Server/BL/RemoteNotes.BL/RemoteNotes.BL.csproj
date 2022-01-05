@@ -9,7 +9,14 @@
       <ProjectReference Include="..\..\..\RemoteNotes.Core\RemoteNotes.Rules.Contract\RemoteNotes.Rules.Contract.csproj" />
       <ProjectReference Include="..\..\DAL\RemoteNotes.DAL.Contract\RemoteNotes.DAL.Contract.csproj" />
       <ProjectReference Include="..\..\RemoteNotes.DAL.Contract\RemoteNotes.DAL.Contract.csproj" />
+      <ProjectReference Include="..\RemoteNotes.BL.Contract\RemoteNotes.BL.Contract.csproj" />
       <ProjectReference Include="..\RemoteNotes.BL.Security\RemoteNotes.BL.Security.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="User\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="User\" />
+    </ItemGroup>
 </Project>
