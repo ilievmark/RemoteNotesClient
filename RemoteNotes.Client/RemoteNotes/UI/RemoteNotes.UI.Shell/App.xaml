@@ -2,8 +2,15 @@
 <application:BaseApplication xmlns="http://xamarin.com/schemas/2014/forms"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:application="clr-namespace:RemoteNotes.UI.Shell.Application;assembly=RemoteNotes.UI.Shell"
+                 xmlns:converters="clr-namespace:RemoteNotes.UI.Control.Converters;assembly=RemoteNotes.UI.Control"
                  x:Class="RemoteNotes.UI.Shell.App">
+    
     <Application.Resources>
 
+        <ResourceDictionary>
+            <converters:NullValueBoolConverter x:Key="NullValueBoolConverter"/>
+        </ResourceDictionary>
+        
     </Application.Resources>
+    
 </application:BaseApplication>
