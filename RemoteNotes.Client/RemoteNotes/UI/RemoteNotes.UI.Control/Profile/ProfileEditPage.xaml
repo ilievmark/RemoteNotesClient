@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<pages:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:RemoteNotes.UI.Control.Pages;assembly=RemoteNotes.UI.Control"
+             xmlns:profile="clr-namespace:RemoteNotes.UI.ViewModel.Profile;assembly=RemoteNotes.UI.ViewModel"
+             x:Class="RemoteNotes.UI.Control.Profile.ProfileEditPage"
+             x:DataType="profile:ProfileEditViewModel">
+    
+    <Page.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveProfileCommand}"/>
+    </Page.ToolbarItems>
+    
+    <ScrollView>
+        
+        <Grid RowDefinitions="60, 60, 60, Auto"
+              Padding="20">
+            
+            <Frame Grid.Row="2"
+                   Grid.RowSpan="2"
+                   Background="#D4EFEF"
+                   CornerRadius="10"
+                   Padding="20, 80, 20, 20">
+                
+                <StackLayout Spacing="15">
+                    
+                    <Label Text="{Binding PhotoUrl, StringFormat='Photo URL: {0}'}"
+                           MaxLines="2"
+                           LineBreakMode="HeadTruncation"/>
+                    <Editor Text="{Binding PhotoUrl}"
+                            Placeholder="Place photo url..."
+                            AutoSize="TextChanges"/>
+                    
+                    <BoxView Margin="0, 5"
+                             HeightRequest="1"
+                             BackgroundColor="LightSteelBlue"/>
+                    
+                    <Label Text="{Binding UserName, StringFormat='Nickname: {0}'}"/>
+                    
+                    <Label Text="{Binding Name, StringFormat='Name: {0}'}"/>
+                    <Entry Text="{Binding Name}"
+                           Placeholder="Enter your name..."/>
+                    
+                    <BoxView Margin="0, 5"
+                             HeightRequest="1"
+                             BackgroundColor="LightSteelBlue"/>
+                    
+                    <Label Text="{Binding Surname, StringFormat='Surname: {0}'}"/>
+                    <Entry Text="{Binding Surname}"
+                           Placeholder="Enter your surname..."/>
+                    
+                    <BoxView Margin="0, 5"
+                             HeightRequest="1"
+                             BackgroundColor="LightSteelBlue"/>
+                    
+                    <Label Text="{Binding Email, StringFormat='Email: {0}'}"/>
+                    <Entry Text="{Binding Email}"
+                           Placeholder="Enter your email..."
+                           Keyboard="Email"/>
+                    
+                </StackLayout>
+                
+            </Frame>
+            
+            <Image Grid.Row="1"
+                   Grid.RowSpan="2"
+                   HeightRequest="120"
+                   WidthRequest="120"
+                   Source="{Binding PhotoUrl}"/>
+            
+        </Grid>
+        
+    </ScrollView>
+    
+</pages:BaseContentPage>

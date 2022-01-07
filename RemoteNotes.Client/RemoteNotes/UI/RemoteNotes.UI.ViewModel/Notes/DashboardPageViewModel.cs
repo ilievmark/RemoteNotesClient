@@ -53,6 +53,7 @@ namespace RemoteNotes.UI.ViewModel.Notes
         
         public ICommand RefreshCommand => new AsyncCommand(() => CommandExecutionHolderMethodAsync(OnRefreshCommand));
         public ICommand CreateNoteCommand => new AsyncCommand(() => CommandExecutionHolderMethodAsync(OnCreateNoteCommand));
+        public ICommand OpenProfileCommand => new AsyncCommand(() => CommandExecutionHolderMethodAsync(OnOpenProfileCommand));
         public ICommand EditNoteCommand => new AsyncCommand(o => CommandExecutionHolderMethodAsync(OnEditNoteCommand, o));
         public ICommand DeleteNoteCommand => new AsyncCommand(o => CommandExecutionHolderMethodAsync(OnDeleteNoteCommand, o));
 
@@ -69,6 +70,11 @@ namespace RemoteNotes.UI.ViewModel.Notes
         {
             return NavigationService.NavigateNextAsync(PageTags.EditNote, CancellationToken.None,
                 new KeyValuePair<string, object>("Note", note));
+        }
+
+        private Task OnOpenProfileCommand()
+        {
+            return NavigationService.NavigateNextAsync(PageTags.ProfileView, CancellationToken.None);
         }
 
         private Task OnCreateNoteCommand()

@@ -7,5 +7,7 @@
         public const string Dashboard = nameof(Dashboard);
         public const string CreateNote = nameof(CreateNote);
         public const string EditNote = nameof(EditNote);
+        public const string ProfileView = nameof(ProfileView);
+        public const string ProfileEdit = nameof(ProfileEdit);
     }
 }

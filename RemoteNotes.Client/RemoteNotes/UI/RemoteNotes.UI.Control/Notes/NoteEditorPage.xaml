@@ -5,7 +5,8 @@
              xmlns:pages="clr-namespace:RemoteNotes.UI.Control.Pages;assembly=RemoteNotes.UI.Control"
              xmlns:vm="clr-namespace:RemoteNotes.UI.ViewModel.Notes;assembly=RemoteNotes.UI.ViewModel"
              x:Class="RemoteNotes.UI.Control.Notes.NoteEditorPage"
-             x:DataType="vm:NoteEditViewModelBase">
+             x:DataType="vm:NoteEditViewModelBase"
+             Title="{Binding Title}">
     
     <ScrollView Padding="15">
         
