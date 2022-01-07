@@ -27,25 +27,21 @@
                             
                             <SwipeView.RightItems>
 
-                                <SwipeItem Text="Edit"
-                                           BackgroundColor="LightYellow"
-                                           Command="{Binding BindingContext.EditNoteCommand, Source={x:Reference this}}"
-                                           CommandParameter="{Binding .}"/>
-
-                            </SwipeView.RightItems>
-                            
-                            <SwipeView.LeftItems>
-                                
                                 <SwipeItem Text="Delete"
                                            BackgroundColor="Red"
                                            Command="{Binding BindingContext.DeleteNoteCommand, Source={x:Reference this}}"
                                            CommandParameter="{Binding .}"/>
-
-                            </SwipeView.LeftItems>
+                                
+                            </SwipeView.RightItems>
                             
-                            <Frame BackgroundColor="#AAAAAA"
+                            <Frame BackgroundColor="#CCCCCC"
                                    CornerRadius="8"
                                    Margin="15">
+                                
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.OpenNoteCommand, Source={x:Reference this}}"
+                                                          CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
                                 
                                 <Grid RowDefinitions="30, *"
                                       Margin="10">

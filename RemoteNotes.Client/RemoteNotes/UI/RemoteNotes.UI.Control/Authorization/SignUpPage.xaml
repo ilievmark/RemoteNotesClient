@@ -9,32 +9,45 @@
     x:DataType="vm:SignUpViewModel"
     Title="{Binding Title}">
     
-    <Grid Padding="20"
-          VerticalOptions="Center"
-          RowDefinitions=".3*, .3*, .3*, 40, 40">
+    <ScrollView>
         
-        <Entry Grid.Row="0"
-               Text="{Binding Login}"
-               Placeholder="Login"/>
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     Padding="15"
+                     Spacing="15">
         
-        <Entry Grid.Row="1"
-               Text="{Binding Password}"
-               Placeholder="Password"
-               IsPassword="True"/>
+            <Frame BackgroundColor="#BBBBBB"
+                   CornerRadius="8"
+                   HasShadow="False">
+            
+                <StackLayout Margin="10">
+                
+                    <Entry Text="{Binding Login}"
+                           Placeholder="Login"/>
         
-        <Entry Grid.Row="1"
-               Text="{Binding ConfirmPassword}"
-               Placeholder="Repeat password"
-               IsPassword="True"/>
+                    <Entry Text="{Binding Password}"
+                           Placeholder="Password"
+                           IsPassword="True"/>
         
-        <Button Grid.Row="3"
-                Command="{Binding SignUpCommand}"
-                Text="Sign up"/>
+                    <Entry Text="{Binding ConfirmPassword}"
+                           Placeholder="Repeat password"
+                           IsPassword="True"/>
+                
+                </StackLayout>
+            
+            </Frame>
         
-        <Button Grid.Row="4"
-                Command="{Binding ToLoginCommand}"
-                Text="Already has account?"/>
+            <Button Command="{Binding SignUpCommand}"
+                    Text="Sign up"
+                    TextColor="White"
+                    BackgroundColor="CornflowerBlue"
+                    CornerRadius="8"/>
         
-    </Grid>
+            <Button Grid.Row="4"
+                    Command="{Binding ToLoginCommand}"
+                    Text="Already has account?"/>
+        
+        </StackLayout>
+        
+    </ScrollView>
     
 </pages:BaseContentPage>

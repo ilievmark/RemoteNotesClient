@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<pages:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:RemoteNotes.UI.Control.Pages;assembly=RemoteNotes.UI.Control"
+             xmlns:notes="clr-namespace:RemoteNotes.UI.ViewModel.Notes;assembly=RemoteNotes.UI.ViewModel"
+             x:Class="RemoteNotes.UI.Control.Notes.NoteViewPage"
+             x:DataType="notes:ViewNoteViewModel">
+    
+    <Page.ToolbarItems>
+        <ToolbarItem Text="Edit" Command="{Binding EditCommand}"/>
+    </Page.ToolbarItems>
+    
+    <ScrollView>
+        
+        <Grid RowDefinitions="Auto, Auto"
+              Padding="20"
+              RowSpacing="20">
+            
+            <Frame Grid.Row="0"
+                   Padding="0"
+                   CornerRadius="8"
+                   HasShadow="True">
+                
+                <Image Source="{Binding Note.PhotoUrl}"/>
+                
+            </Frame>
+            
+            <Frame Grid.Row="1"
+                   CornerRadius="8"
+                   HasShadow="True"
+                   BackgroundColor="#80e89d">
+                
+                <StackLayout Spacing="15">
+                    
+                    <Label Text="{Binding Note.Topic, StringFormat='Topic: {0}'}"/>
+                    <Label Text="Text:"/>
+                    
+                    <Frame Margin="5"
+                           CornerRadius="8"
+                           HasShadow="False"
+                           BackgroundColor="#7af09c">
+                        
+                        <Label Text="{Binding Note.Text}"/>
+                        
+                    </Frame>
+                    
+                    <Label Text="{Binding Note.PublishTime, StringFormat='Published at: {0:hh:mm, dd MMM yy}'}"/>
+                    <Label Text="{Binding Note.LastModifyTime, StringFormat='Modified at: {0:hh:mm, dd MMM yy}'}">
+                        <Label.Triggers>
+                            <DataTrigger Binding="{Binding Note.LastModifyTime, Converter={StaticResource NullValueBoolConverter}}" TargetType="Label" Value="False">
+                                <Setter Property="IsVisible" Value="False"  />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    
+                </StackLayout>
+                
+            </Frame>
+            
+        </Grid>
+        
+    </ScrollView>
+    
+</pages:BaseContentPage>

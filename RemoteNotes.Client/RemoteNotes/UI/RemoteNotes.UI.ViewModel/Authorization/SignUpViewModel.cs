@@ -9,6 +9,7 @@ using RemoteNotes.Domain.Contract.Authorization;
 using RemoteNotes.Domain.Contract.Navigation;
 using RemoteNotes.Domain.Core.Attributes;
 using RemoteNotes.Domain.Core.Constants;
+using RemoteNotes.Domain.Exceptions.Authorization;
 using RemoteNotes.Domain.Extensions;
 using RemoteNotes.Domain.Services.ViewModel;
 using RemoteNotes.Service.Client.Contract.Authorization;
@@ -75,9 +76,9 @@ namespace RemoteNotes.UI.ViewModel.Authorization
             {
                 await SignUpAsync(login, password, confirmPassword);
             }
-            catch (AuthenticationException authenticationException)
+            catch (AuthorizationException authenticationException)
             {
-                ShowToast("Sign up error. Check, you have user account");
+                ShowToast("Sign up error. Check, if you have user account");
             }
             catch (InvalidDataException invalidDataException)
             {
@@ -97,7 +98,7 @@ namespace RemoteNotes.UI.ViewModel.Authorization
                 return;
             }
             
-            await _authorizationService.SignInAsync(login, password, CancellationToken.None);
+            await _authorizationService.SignUpAsync(login, password, CancellationToken.None);
 
             if (_authorizationHolder.GetLastSession().IsValid())
                 await NavigationService.NavigateWithReplaceAsync(PageTags.Dashboard, CancellationToken.None);
