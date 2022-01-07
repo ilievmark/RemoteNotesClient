@@ -7,6 +7,10 @@
              x:Class="RemoteNotes.UI.Control.Profile.ProfileEditPage"
              x:DataType="profile:ProfileEditViewModel">
     
+    <Page.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveProfileCommand}"/>
+    </Page.ToolbarItems>
+    
     <ScrollView>
         
         <Grid RowDefinitions="60, 60, 60, Auto"
@@ -51,7 +55,8 @@
                     
                     <Label Text="{Binding Email, StringFormat='Email: {0}'}"/>
                     <Entry Text="{Binding Email}"
-                           Placeholder="Enter your email..."/>
+                           Placeholder="Enter your email..."
+                           Keyboard="Email"/>
                     
                 </StackLayout>
                 

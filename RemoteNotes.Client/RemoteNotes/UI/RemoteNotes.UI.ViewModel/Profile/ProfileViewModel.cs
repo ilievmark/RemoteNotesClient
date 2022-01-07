@@ -15,16 +15,21 @@ using RemoteNotes.UI.ViewModel.Tool;
 namespace RemoteNotes.UI.ViewModel.Profile
 {
     [ViewModelRegistration(NavigationTag = PageTags.ProfileView)]
-    public class ProfileViewModel : ProfileViewModelBase, INavigated
+    public class ProfileViewModel : ProfileViewModelBase, INavigated, INavigatedBack
     {
+        private readonly IUserHub _userHub;
+        
         private UserModel _user;
 
         public ProfileViewModel(
+            IUserHub userHub,
             IUserService userService,
             INavigationService navigationService,
             IUserDialogs userDialogs)
             : base(userService, navigationService, userDialogs)
         {
+            _userHub = userHub;
+            
             Title = "Profile";
         }
         
@@ -38,6 +43,8 @@ namespace RemoteNotes.UI.ViewModel.Profile
 
         public async Task OnNavigatedAsync(NavigationData navigationData, CancellationToken token)
         {
+            _userHub.UserDataUpdated += OnUserDataUpdated;
+            
             using (UserDialogs.Loading())
             {
                 _user = await _userService.GetUserDataAsync();
@@ -45,5 +52,17 @@ namespace RemoteNotes.UI.ViewModel.Profile
             }
         }
 
+        public Task OnNavigatedBackAsync(NavigationData navigationData, CancellationToken token)
+        {
+            _userHub.UserDataUpdated -= OnUserDataUpdated;
+
+            return Task.CompletedTask;
+        }
+
+        private void OnUserDataUpdated(UserModel user)
+        {
+            _user = user;
+            LoadFieldsFromModel(_user);
+        }
     }
 }
