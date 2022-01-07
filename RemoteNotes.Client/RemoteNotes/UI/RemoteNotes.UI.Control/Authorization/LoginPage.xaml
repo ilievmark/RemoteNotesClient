@@ -12,11 +12,12 @@
     <ScrollView>
         
         <StackLayout VerticalOptions="CenterAndExpand"
-                     Padding="10">
+                     Padding="15"
+                     Spacing="15">
         
-            <Frame Grid.Row="0"
-                   BackgroundColor="#999999"
-                   CornerRadius="8">
+            <Frame BackgroundColor="#BBBBBB"
+                   CornerRadius="8"
+                   HasShadow="False">
             
                 <StackLayout Margin="10">
                 
@@ -31,9 +32,11 @@
             
             </Frame>
         
-            <Button Grid.Row="3"
-                    Command="{Binding LoginCommand}"
-                    Text="Login"/>
+            <Button Command="{Binding LoginCommand}"
+                    Text="Login"
+                    TextColor="White"
+                    BackgroundColor="CornflowerBlue"
+                    CornerRadius="8"/>
         
             <Button Grid.Row="4"
                     Command="{Binding ToSignUpCommand}"
