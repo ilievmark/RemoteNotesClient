@@ -46,7 +46,6 @@ namespace RemoteNotes.UI.ViewModel.Notes
         }
 
         public ICommand SaveCommand => new AsyncCommand(() => OnSaveCommandAsync(Note.Note));
-        public ICommand CancelCommand => new AsyncCommand(OnCancelCommandAsync);
         public ICommand PickImageCommand => new AsyncCommand(OnPickImageCommandAsync);
 
         private async Task OnPickImageCommandAsync()
@@ -69,11 +68,6 @@ namespace RemoteNotes.UI.ViewModel.Notes
             {
                 Debugger.Break();
             }
-        }
-
-        private Task OnCancelCommandAsync()
-        {
-            return NavigationService.NavigateBackAsync(CancellationToken.None);
         }
 
         protected abstract Task OnSaveAsync(NoteModel note);

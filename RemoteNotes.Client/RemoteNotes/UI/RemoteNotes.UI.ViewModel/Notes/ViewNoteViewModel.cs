@@ -26,7 +26,7 @@ namespace RemoteNotes.UI.ViewModel.Notes
         {
         }
         
-        public ICommand EditCommand => new AsyncCommand(() => OnEditCommandAsync(Note.Note));
+        public ICommand EditCommand => new AsyncCommand(() => OnEditCommandAsync(Note));
 
         protected override Task OnSaveAsync(NoteModel note)
         {
@@ -40,10 +40,10 @@ namespace RemoteNotes.UI.ViewModel.Notes
             return Task.CompletedTask;
         }
 
-        private Task OnEditCommandAsync(NoteModel noteNote)
+        private Task OnEditCommandAsync(NoteViewModel noteNote)
         {
             return NavigationService.NavigateNextAsync(PageTags.EditNote, CancellationToken.None,
-                new KeyValuePair<string, object>("Note", Note.Note));
+                new KeyValuePair<string, object>("Note", Note));
         }
     }
 }

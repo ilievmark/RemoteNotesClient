@@ -8,34 +8,67 @@
              x:DataType="vm:NoteEditViewModelBase"
              Title="{Binding Title}">
     
-    <ScrollView Padding="15">
+    <Page.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}"/>
+    </Page.ToolbarItems>
+    
+    <ScrollView>
         
-        <Grid RowDefinitions="300, 40, 40, 40, 40"
-              RowSpacing="10">
-        
-            <Image Grid.Row="0"
-                   Source="{Binding Photo}">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding PickImageCommand}"/>
-                </Image.GestureRecognizers>
-            </Image>
+        <Grid RowDefinitions="Auto, Auto"
+              Padding="20"
+              RowSpacing="20">
             
-            <Entry Grid.Row="1"
-                   Text="{Binding Note.Topic}"
-                   Placeholder="Topic"/>
+            <Frame Grid.Row="0"
+                   Padding="0"
+                   CornerRadius="8"
+                   HasShadow="True">
+                
+                <Image Source="{Binding Note.PhotoUrl}"/>
+                
+            </Frame>
             
-            <Entry Grid.Row="2"
-                   Text="{Binding Note.Text}"
-                   Placeholder="Text"/>
+            <Frame Grid.Row="1"
+                   CornerRadius="8"
+                   HasShadow="True"
+                   BackgroundColor="#80e89d">
+                
+                <StackLayout Spacing="15">
+                    
+                    <Label Text="{Binding Note.PhotoUrl, StringFormat='Image URL: {0}'}"
+                           MaxLines="2"
+                           LineBreakMode="HeadTruncation"/>
+                    <Editor Text="{Binding Note.PhotoUrl}"
+                            Placeholder="Enter photo URL"
+                            AutoSize="TextChanges"/>
+                    
+                    <BoxView Margin="0, 5"
+                             HeightRequest="1"
+                             BackgroundColor="LightSteelBlue"/>
+                    
+                    <Label Text="{Binding Note.Topic, StringFormat='Topic: {0}'}"/>
+                    <Entry Text="{Binding Note.Topic}"
+                           Placeholder="Topic"/>
+                    
+                    <BoxView Margin="0, 5"
+                             HeightRequest="1"
+                             BackgroundColor="LightSteelBlue"/>
+                    
+                    <Label Text="Enter text of note:"/>
+                    <Editor Text="{Binding Note.Text}"
+                            Placeholder="Text"
+                            AutoSize="TextChanges"/>
+                    
+                    <BoxView Margin="0, 5"
+                             HeightRequest="1"
+                             BackgroundColor="LightSteelBlue"/>
+                    
+                    <Label Text="{Binding Note.PublishTime, StringFormat='Published at: {0:hh:mm, dd MMM yy}'}"/>
+                    <Label Text="Modified at: at the moment you save it"/>
+                    
+                </StackLayout>
+                
+            </Frame>
             
-            <Button Grid.Row="3"
-                    Text="Save"
-                    Command="{Binding SaveCommand}"/>
-            
-            <Button Grid.Row="4"
-                    Text="Cancel"
-                    Command="{Binding CancelCommand}"/>
-        
         </Grid>
         
     </ScrollView>
