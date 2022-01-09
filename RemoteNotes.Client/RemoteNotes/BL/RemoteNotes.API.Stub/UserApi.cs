@@ -11,7 +11,15 @@ namespace RemoteNotes.API.Stub
 
         public UserApi()
         {
-            _user = new UserModel();
+            _user = new UserModel
+            {
+                Id = 0,
+                PhotoUrl = "https://i1.mosconsv.ru/287/400/800/90/kotek_iosif.jpg",
+                Name = "Jhon",
+                Surname = "Doe",
+                Email = "jhon.doe.2925@gmail.com",
+                UserName = "JonieJi29"
+            };
         }
 
         public async Task<ApiResponse<UserModel>> GetUserDataAsync()

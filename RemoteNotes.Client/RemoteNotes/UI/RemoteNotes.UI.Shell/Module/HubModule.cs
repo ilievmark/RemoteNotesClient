@@ -67,6 +67,7 @@ namespace RemoteNotes.UI.Shell.Module
 
             builder.RegisterType<UserHub>().SingleInstance()
                    .As<IUserHub>().As<IHubObserver>();
+            
             builder.RegisterType<UserService>().As<IUserService>().SingleInstance();
         }
     }
