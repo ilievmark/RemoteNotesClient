@@ -6,10 +6,10 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugMock|AnyCPU' ">
-      <IntermediateOutputPath>obj\DebugMock\netstandard2.1</IntermediateOutputPath>
+      <IntermediateOutputPath>obj\DebugMock\netstandard2.1\netstandard2.1</IntermediateOutputPath>
       <DebugSymbols>true</DebugSymbols>
       <Optimize>false</Optimize>
-      <OutputPath>bin\DebugMock\netstandard2.1</OutputPath>
+      <OutputPath>bin\DebugMock\netstandard2.1\netstandard2.1</OutputPath>
       <DefineConstants>TRACE;DEBUG;NETSTANDARD;NETSTANDARD2_1;MOCK</DefineConstants>
     </PropertyGroup>
     <ItemGroup>

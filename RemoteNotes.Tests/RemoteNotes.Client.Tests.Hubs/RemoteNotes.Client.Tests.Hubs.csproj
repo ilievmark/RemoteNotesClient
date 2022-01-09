@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="FluentAssertions" />
+    <None Remove="xunit" />
+    <None Remove="Microsoft.NET.Test.Sdk" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.3.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\RemoteNotes.Client\RemoteNotes\Service\RemoteNotes.Service.Client.Contract\RemoteNotes.Service.Client.Contract.csproj" />
+    <ProjectReference Include="..\..\RemoteNotes.Client\RemoteNotes\Service\RemoteNotes.Service.Domain\RemoteNotes.Service.Domain.csproj" />
+  </ItemGroup>
+</Project>

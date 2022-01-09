@@ -31,12 +31,12 @@ namespace RemoteNotes.Service.Domain.Notes
 
         public Task DeleteNoteAsync(NoteModel note)
         {
-            throw new NotImplementedException();
+            return _hubMessager.SendMessageAsync<NoteModel, string>(NotesHubMessages.DeleteNote, note);
         }
 
         public Task UpdateNoteAsync(NoteModel note)
         {
-            throw new NotImplementedException();
+            return _hubMessager.SendMessageAsync<NoteModel, string>(NotesHubMessages.UpdateNote, note);
         }
 
         public Task PutNoteAsync(NoteModel note)
