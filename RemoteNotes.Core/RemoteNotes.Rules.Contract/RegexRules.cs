@@ -9,7 +9,8 @@ namespace RemoteNotes.Rules.Contract
         // Number of characters must be between 8 to 20.
         public const string Login = @"^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$";
         
-        // Minimum eight characters, at least one letter and one number
+        // Minimum eight characters
+        // At least one letter and one number
         public const string Password = @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$";
     }
 }
