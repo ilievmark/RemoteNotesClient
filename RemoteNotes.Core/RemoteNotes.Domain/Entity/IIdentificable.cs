@@ -1,5 +1,3 @@
-using System;
-
 namespace RemoteNotes.Domain.Entity
 {
     public interface IIdentificable

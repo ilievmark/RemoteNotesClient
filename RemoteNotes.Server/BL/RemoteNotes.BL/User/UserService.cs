@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using RemoteNotes.BL.Contract.User;
 using RemoteNotes.DAL.Contract;
 using RemoteNotes.Domain.Models;
@@ -9,6 +10,8 @@ namespace RemoteNotes.BL.User
     {
         private readonly IUserRepository _userRepository;
 
+        public event Action<int, UserModel> UserDataChanged = delegate {};
+
         public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
@@ -18,7 +21,7 @@ namespace RemoteNotes.BL.User
         {
             var user = new Domain.Entity.User
             {
-                Username = userName,
+                UserName = userName,
                 EncryptedPassword = password
             };
             await _userRepository.AddAsync(user);
@@ -41,17 +44,29 @@ namespace RemoteNotes.BL.User
             var user = await GetUserAsync(userModel.UserName);
             UpdateUserFromProfile(user, userModel);
             _userRepository.Update(user, true);
+            UserDataChanged(user.Id, userModel);
             return userModel;
         }
 
         private void UpdateUserFromProfile(Domain.Entity.User userEntity, UserModel userProfile)
         {
-            
+            userEntity.Email = userProfile.Email;
+            userEntity.Name = userProfile.Name;
+            userEntity.Surname = userProfile.Surname;
+            userEntity.PhotoUrl = userProfile.PhotoUrl;
         }
 
         private UserModel ToUserModel(Domain.Entity.User user)
         {
-            return new UserModel();
+            return new UserModel
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Surname = user.Surname,
+                Email = user.Email,
+                PhotoUrl = user.PhotoUrl,
+                UserName = user.UserName
+            };
         }
     }
 }

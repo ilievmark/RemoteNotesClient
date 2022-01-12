@@ -1,11 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
-using RemoteNotes.BL.Note;
+using RemoteNotes.BL.Contract.Note;
 using RemoteNotes.BL.Security.UserToken;
-using RemoteNotes.Domain.Entity;
+using RemoteNotes.Domain.Hubs;
+using RemoteNotes.Domain.Models;
 
 namespace RemoteNotes.Hubs.Hubs
 {
@@ -23,12 +23,35 @@ namespace RemoteNotes.Hubs.Hubs
             _noteService = noteService;
         }
         
-        public Task<List<Note>> GetNotes()
+        public Task<List<NoteModel>> GetNotes()
         {
             var claims = Context.User.Claims;
             var userId = _userTokenService.UserId(claims);
-            var guidUserId = Guid.Parse(userId);
-            return _noteService.GetNotesAsync(guidUserId);
+            return _noteService.GetNotesAsync(userId);
+        }
+
+        public async Task PutNote(NoteModel note)
+        {
+            var claims = Context.User.Claims;
+            var userId = _userTokenService.UserId(claims);
+            await _noteService.SaveNoteAsync(userId, note);
+            var noteChange = new NoteChangeModel { Change = NoteChange.Added, Model = note };
+            await Clients.Caller.SendCoreAsync(NotesHubMessages.NotesUpdated, new [] { noteChange });
+        }
+
+        public async Task<NoteModel> UpdateNote(NoteModel note)
+        {
+            await _noteService.UpdateNoteAsync(note);
+            var noteChange = new NoteChangeModel { Change = NoteChange.Updated, Model = note };
+            await Clients.Caller.SendCoreAsync(NotesHubMessages.NotesUpdated, new [] { noteChange });
+            return note;
+        }
+
+        public async Task DeleteNote(NoteModel note)
+        {
+            await _noteService.DeleteNoteAsync(note);
+            var noteChange = new NoteChangeModel { Change = NoteChange.Deleted, Model = note };
+            await Clients.Caller.SendCoreAsync(NotesHubMessages.NotesUpdated, new [] { noteChange });
         }
     }
 }
