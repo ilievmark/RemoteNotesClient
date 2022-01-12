@@ -8,11 +8,15 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RemoteNotes.BL.Authorization;
+using RemoteNotes.BL.Contract.Authorization;
+using RemoteNotes.BL.Contract.Note;
+using RemoteNotes.BL.Contract.User;
 using RemoteNotes.BL.Note;
 using RemoteNotes.BL.Security;
 using RemoteNotes.BL.Security.Password;
 using RemoteNotes.BL.Security.Token;
 using RemoteNotes.BL.Security.UserToken;
+using RemoteNotes.BL.User;
 using RemoteNotes.Hubs.Hubs;
 
 namespace RemoteNotesServer
@@ -83,6 +87,7 @@ namespace RemoteNotesServer
             services.AddScoped<IPasswordCryptor, PasswordCryptor>();
             services.AddScoped<IAuthorizationService, AuthorizationService>();
             services.AddScoped<INoteService, NoteService>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -102,6 +107,7 @@ namespace RemoteNotesServer
             app.UseEndpoints(builder =>
             {
                 builder.MapHub<NotesHub>("/notes");
+                builder.MapHub<UserHub>("/user");
             });
         }
     }

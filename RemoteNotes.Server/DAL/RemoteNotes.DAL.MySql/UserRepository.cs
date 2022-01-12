@@ -20,7 +20,7 @@ namespace RemoteNotes.DAL.MySql
         protected override void AddInputParameterCollection(IDbCommand sqlCommand, User note)
         {
             _sqlDataManager.AddParameter(sqlCommand, "@Id", note.Id);
-            _sqlDataManager.AddParameter(sqlCommand, "@Username", note.Username);
+            _sqlDataManager.AddParameter(sqlCommand, "@Username", note.UserName);
             _sqlDataManager.AddParameter(sqlCommand, "@EncryptedPassword", note.EncryptedPassword);
         }
     }
