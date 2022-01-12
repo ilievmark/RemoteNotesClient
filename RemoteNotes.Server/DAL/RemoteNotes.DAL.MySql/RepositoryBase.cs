@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
@@ -18,13 +17,13 @@ namespace RemoteNotes.DAL.MySql
             _entityName = typeof(T).Name;
         }
         
-        public Task<T> GetByIdAsync(Guid id)
+        public Task<T> GetByIdAsync(int id)
         {
             string queryCommand = string.Format("Get{0}ById", _entityName);
             return _sqlDataManager.GetByIdAsync<T>(queryCommand, id);
         }
 
-        public T GetById(Guid id)
+        public T GetById(int id)
         {
             string queryCommand = string.Format("Get{0}ById", _entityName);
             return _sqlDataManager.GetById<T>(queryCommand, id);
@@ -48,7 +47,7 @@ namespace RemoteNotes.DAL.MySql
             AddInputParameterCollection(sqlCommand, element);
             _sqlDataManager.AddParameter(sqlCommand, @"Id", 4, ParameterDirection.Output);
             _sqlDataManager.ExecuteCommand(sqlCommand, commit);
-            var id = Guid.Parse(_sqlDataManager.GetValue(sqlCommand, "@Id").ToString());
+            var id = int.Parse(_sqlDataManager.GetValue(sqlCommand, "@Id").ToString());
             element.Id = id;
         }
         
@@ -60,7 +59,7 @@ namespace RemoteNotes.DAL.MySql
             AddInputParameterCollection(sqlCommand, element);
             _sqlDataManager.AddParameter(sqlCommand, @"Id", 4, ParameterDirection.Output);
             await _sqlDataManager.ExecuteCommandAsync(sqlCommand, commit);
-            var id = Guid.Parse(_sqlDataManager.GetValue(sqlCommand, "@Id").ToString());
+            var id = int.Parse(_sqlDataManager.GetValue(sqlCommand, "@Id").ToString());
             element.Id = id;
         }
         
@@ -69,7 +68,7 @@ namespace RemoteNotes.DAL.MySql
             Delete(element.Id);
         }
         
-        public void Delete(Guid id, bool commit = true)
+        public void Delete(int id, bool commit = true)
         {
             string commandText = string.Format("Delete{0}", _entityName);
             IDbCommand sqlCommand = _sqlDataManager.GetCommand(commandText);
@@ -78,7 +77,7 @@ namespace RemoteNotes.DAL.MySql
             _sqlDataManager.ExecuteCommand(sqlCommand, commit);
         }
 
-        public async Task DeleteAsync(Guid id, bool commit = true)
+        public async Task DeleteAsync(int id, bool commit = true)
         {
             string commandText = string.Format("Delete{0}", _entityName);
             IDbCommand sqlCommand = _sqlDataManager.GetCommand(commandText);

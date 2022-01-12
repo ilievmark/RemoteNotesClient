@@ -6,13 +6,13 @@ namespace RemoteNotes.DAL.Contract
 {
     public interface ICRUDRepository<T>
     {
-        Task<T> GetByIdAsync(Guid id);
+        Task<T> GetByIdAsync(int id);
 
-        T GetById(Guid id);
+        T GetById(int id);
 
-        void Delete(Guid id, bool commit = false);
+        void Delete(int id, bool commit = false);
 
-        Task DeleteAsync(Guid id, bool commit = false);
+        Task DeleteAsync(int id, bool commit = false);
 
         void Add(T element, bool commit = false);
 

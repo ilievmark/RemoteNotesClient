@@ -11,9 +11,6 @@ namespace RemoteNotes.DAL.MySql
 {
     public class SqlDataManager : ISqlDataManager
     {
-        /// <summary>
-        /// The connection string.
-        /// </summary>
         protected string connectionString = string.Empty;
 
         private DatabaseContext databaseContext;
@@ -74,7 +71,7 @@ namespace RemoteNotes.DAL.MySql
             }
         }
 
-        public T GetById<T>(string query, Guid id)
+        public T GetById<T>(string query, int id)
         {
             MySqlCommand command = new MySqlCommand(query);
             command.CommandType = CommandType.StoredProcedure;
@@ -132,15 +129,6 @@ namespace RemoteNotes.DAL.MySql
             return collection;
         }
 
-        /// <summary>
-        /// The get data table.
-        /// </summary>
-        /// <param name="tableName">
-        /// The table name.
-        /// </param>
-        /// <returns>
-        /// The <see cref="DataTable"/>.
-        /// </returns>
         public List<T> GetCollection<T>(string tableName)
         {
             try
@@ -199,8 +187,6 @@ namespace RemoteNotes.DAL.MySql
             }
         }
 
-
-
         protected virtual List<T> ProcessRead<T>(IDataReader reader)
         {
             List<T> collection = new List<T>();
@@ -243,11 +229,6 @@ namespace RemoteNotes.DAL.MySql
         public object GetValue(IDbCommand sqlCommand, string parameterName)
         {
             return ((MySqlCommand) sqlCommand).Parameters[parameterName].Value;
-        }
-
-        public Task<T> GetByIdAsync<T>(string queryCommand, Guid id)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<T> GetByIdAsync<T>(string query, int id)

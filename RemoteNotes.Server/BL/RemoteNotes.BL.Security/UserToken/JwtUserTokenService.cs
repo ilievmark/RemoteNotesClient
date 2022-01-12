@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using RemoteNotes.BL.Security.Token;
-using RemoteNotes.Domain.Entity;
 using RemoteNotes.Domain.Models;
 
 namespace RemoteNotes.BL.Security.UserToken

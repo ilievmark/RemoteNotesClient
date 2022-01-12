@@ -23,7 +23,7 @@ namespace RemoteNotes.DAL.MySql
             _sqlDataManager.AddParameter(sqlCommand, "@ModifiedAt", DateTime.Now);
         }
 
-        public Task<List<Note>> GetByUserIdAsync(Guid id)
+        public Task<List<Note>> GetByUserIdAsync(int id)
         {
             string queryCommand = string.Format("select * from `{0}s`", _entityName);
 

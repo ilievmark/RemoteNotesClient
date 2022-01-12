@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
@@ -13,7 +12,7 @@ namespace RemoteNotes.DAL.Contract
 
         void ExecuteCommand(IDbCommand command, bool commit);
 
-        T GetById<T>(string query, Guid id);
+        T GetById<T>(string query, int id);
 
         T GetByQueryParameter<T>(string query, string parameterName, string parameter);
 
@@ -33,7 +32,7 @@ namespace RemoteNotes.DAL.Contract
 
         object GetValue(IDbCommand sqlCommand, string parameterName);
 
-        Task<T> GetByIdAsync<T>(string queryCommand, Guid id);
+        Task<T> GetByIdAsync<T>(string queryCommand, int id);
 
         Task ExecuteCommandAsync(IDbCommand sqlCommand, bool commit);
     }
