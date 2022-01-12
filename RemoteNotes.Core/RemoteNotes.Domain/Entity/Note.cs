@@ -12,6 +12,8 @@ namespace RemoteNotes.Domain.Entity
 
         public string Description { get; set; }
 
+        public string PhotoUrl { get; set; }
+
         public DateTime CreatedAt { get; set; }
         
         public DateTime ModifiedAt { get; set; }
