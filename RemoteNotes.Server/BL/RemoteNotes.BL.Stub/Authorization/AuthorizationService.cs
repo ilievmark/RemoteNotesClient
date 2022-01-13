@@ -20,25 +20,26 @@ namespace RemoteNotes.BL.Stub.Authorization
             _userTokenService = userTokenService;
         }
 
-        public Task<TokenModel> SignUpAsync(string username, string password)
+        public async Task<TokenModel> SignUpAsync(string username, string password)
         {
+            await Task.Delay(2000);
             ValidateUserData(username, password);
             var userModel = new UserModel {UserName = username};
-            return Task.FromResult(
-                _userTokenService.CreateToken(userModel));
+            return _userTokenService.CreateToken(userModel);
         }
 
-        public Task<TokenModel> SignInAsync(string username, string password)
+        public async Task<TokenModel> SignInAsync(string username, string password)
         {
+            await Task.Delay(2000);
             ValidateUser(username, password);
             var userModel = new UserModel {UserName = username};
-            return Task.FromResult(
-                _userTokenService.CreateToken(userModel));
+            return _userTokenService.CreateToken(userModel);
         }
 
-        public Task<TokenModel> RefreshTokenAsync(string refreshToken)
+        public async Task<TokenModel> RefreshTokenAsync(string refreshToken)
         {
-            return Task.FromResult(_userTokenService.RefreshToken(refreshToken));
+            await Task.Delay(2000);
+            return _userTokenService.RefreshToken(refreshToken);
         }
         
         private void ValidateUser(string userName, string password)
