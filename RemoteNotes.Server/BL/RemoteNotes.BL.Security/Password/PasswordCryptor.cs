@@ -1,3 +1,5 @@
+using RemoteNotes.BL.Contract.Password;
+
 namespace RemoteNotes.BL.Security.Password
 {
     public class PasswordCryptor : IPasswordCryptor

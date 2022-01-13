@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.SignalR;
 using RemoteNotes.BL.Contract.User;
-using RemoteNotes.BL.Security.UserToken;
+using RemoteNotes.BL.Contract.UserToken;
 using RemoteNotes.Domain.Hubs;
 using RemoteNotes.Domain.Models;
 

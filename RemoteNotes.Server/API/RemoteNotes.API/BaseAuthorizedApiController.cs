@@ -1,4 +1,4 @@
-using RemoteNotes.BL.Security.UserToken;
+using RemoteNotes.BL.Contract.UserToken;
 
 namespace RemoteNotes.API
 {

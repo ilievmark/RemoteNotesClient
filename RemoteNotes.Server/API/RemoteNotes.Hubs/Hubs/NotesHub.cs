@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using RemoteNotes.BL.Contract.Note;
-using RemoteNotes.BL.Security.UserToken;
+using RemoteNotes.BL.Contract.UserToken;
 using RemoteNotes.Domain.Hubs;
 using RemoteNotes.Domain.Models;
 

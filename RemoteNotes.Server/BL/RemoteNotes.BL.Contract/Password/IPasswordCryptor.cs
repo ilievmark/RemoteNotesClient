@@ -1,4 +1,4 @@
-namespace RemoteNotes.BL.Security.Password
+namespace RemoteNotes.BL.Contract.Password
 {
     public interface IPasswordCryptor
     {

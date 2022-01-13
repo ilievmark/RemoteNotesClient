@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using RemoteNotes.Domain.Models;
 
-namespace RemoteNotes.BL.Security.Token
+namespace RemoteNotes.BL.Contract.Token
 {
     public interface ITokenService
     {

@@ -2,9 +2,9 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using RemoteNotes.BL.Contract.Authorization;
+using RemoteNotes.BL.Contract.Password;
 using RemoteNotes.BL.Contract.User;
-using RemoteNotes.BL.Security.Password;
-using RemoteNotes.BL.Security.UserToken;
+using RemoteNotes.BL.Contract.UserToken;
 using RemoteNotes.Domain.Models;
 using RemoteNotes.Rules.Contract;
 

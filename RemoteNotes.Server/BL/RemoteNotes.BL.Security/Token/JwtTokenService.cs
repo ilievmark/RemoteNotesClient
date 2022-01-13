@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using RemoteNotes.BL.Contract.Token;
 using RemoteNotes.Domain.Models;
 
 namespace RemoteNotes.BL.Security.Token

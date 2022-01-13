@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using RemoteNotes.Domain.Models;
 
-namespace RemoteNotes.BL.Security.UserToken
+namespace RemoteNotes.BL.Contract.UserToken
 {
     public interface IUserTokenService
     {

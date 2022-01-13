@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RemoteNotes.BL.Contract.User;
-using RemoteNotes.BL.Security.UserToken;
+using RemoteNotes.BL.Contract.UserToken;
 using RemoteNotes.Domain;
 using RemoteNotes.Domain.Endpoints;
 using RemoteNotes.Domain.Models;

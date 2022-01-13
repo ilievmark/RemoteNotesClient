@@ -11,6 +11,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\RemoteNotes.Core\RemoteNotes.Domain\RemoteNotes.Domain.csproj" />
+      <ProjectReference Include="..\RemoteNotes.BL.Contract\RemoteNotes.BL.Contract.csproj" />
     </ItemGroup>
 
 </Project>

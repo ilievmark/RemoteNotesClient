@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using RemoteNotes.BL.Contract.Authorization;
-using RemoteNotes.BL.Security.UserToken;
+using RemoteNotes.BL.Contract.UserToken;
 using RemoteNotes.Domain.Models;
 using RemoteNotes.Rules.Contract;
 
